@@ -6,23 +6,23 @@
 //*******************************************
 void initSDCard() {
 
-  pinMode( networkShieldCSPin, OUTPUT);
-  digitalWrite( networkShieldCSPin, HIGH  );
-  pinMode(sdCardCSPin, OUTPUT);
-  digitalWrite(sdCardCSPin, HIGH);
+        pinMode( networkShieldCSPin, OUTPUT);
+        digitalWrite( networkShieldCSPin, HIGH  );
+        pinMode(sdCardCSPin, OUTPUT);
+        digitalWrite(sdCardCSPin, HIGH);
 
-  if (!SD.begin(sdCardCSPin)) {
-    playAlarmNOSD();;
-    sdCardPresent = false;
+        if (!SD.begin(sdCardCSPin)) {
+                playAlarmNOSD();;
+                sdCardPresent = false;
 #ifdef DEBUG
-    Serial.println("initialization failed!");
+                Serial.println("initialization failed!");
 #endif
-    return;
-  } else {
-    sdCardPresent = true;
-  }
+                return;
+        } else {
+                sdCardPresent = true;
+        }
 
-  loadConfiguration(filename, config);
+        loadConfiguration(filename, config);
 }
 //******************************************************
 //
@@ -30,7 +30,7 @@ void initSDCard() {
 //
 //******************************************************
 void activateSDCard() {
-  digitalWrite( networkShieldCSPin, HIGH  );
-  digitalWrite(sdCardCSPin, LOW);
-  delay(50);
+        digitalWrite( networkShieldCSPin, HIGH  );
+        digitalWrite(sdCardCSPin, LOW);
+        delay(50);
 }

@@ -5,15 +5,15 @@
 //*********************************
 void loop() {
 
-  receiveRadioCom();
-  menuNavigationCheck();
-  checkJoystickTuning();
-  motorStop();
+        receiveRadioCom();
+        menuNavigationCheck();
+        checkJoystickTuning();
+        motorStop();
 #ifdef NETWORK
-  checkServerConnection();
+        checkServerConnection();
 #endif
 #ifdef CLOUD_SAVE
-  readCloudResponse();
+        readCloudResponse();
 #endif
-  refreshTimer.check();
+        refreshTimer.check();
 }

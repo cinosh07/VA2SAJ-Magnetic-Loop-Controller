@@ -5,19 +5,19 @@
 //*********************************
 void initRadioCom() {
 #ifdef ICOM
-  initCat();
+        initCat();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 
 }
@@ -28,19 +28,19 @@ void initRadioCom() {
 //*********************************
 void receiveRadioCom() {
 #ifdef ICOM
-  processCatMessages();
+        processCatMessages();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //**************************************************
@@ -54,22 +54,22 @@ void receiveRadioCom() {
 //**************************************************
 void startRadioAutotune() {
 #ifdef ICOM
-  startIcomAutotune();
+        startIcomAutotune();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
-  //Let the time to tranission to stabilise before taking readings
-  delay(500);
+        //Let the time to tranission to stabilise before taking readings
+        delay(500);
 }
 //************************************************************
 //
@@ -82,20 +82,20 @@ void startRadioAutotune() {
 //************************************************************
 void stopRadioAutotune() {
 #ifdef ICOM
-  resetDisplay();
-  stopIcomAutotune();
+        resetDisplay();
+        stopIcomAutotune();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -105,19 +105,19 @@ void stopRadioAutotune() {
 //*******************************************
 void getRadioPower() {
 #ifdef ICOM
-  icom_request_pwr();
+        icom_request_pwr();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -127,19 +127,19 @@ void getRadioPower() {
 //*******************************************
 int getRadioTxmitStatus() {
 #ifdef ICOM
-  return icom_getRadioTxmitStatus();//nalogRead(swrSensorPin) != 0
+        return icom_getRadioTxmitStatus();//nalogRead(swrSensorPin) != 0
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -149,19 +149,19 @@ int getRadioTxmitStatus() {
 //*******************************************
 void getRadioStatus() {
 #ifdef ICOM
-  getIcomRadioStatus();
+        getIcomRadioStatus();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -171,19 +171,19 @@ void getRadioStatus() {
 //*******************************************
 void getRadioFrequency() {
 #ifdef ICOM
-  icom_request_frequency();
+        icom_request_frequency();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -193,19 +193,19 @@ void getRadioFrequency() {
 //*******************************************
 void getRadioBand() {
 #ifdef ICOM
-  icom_request_mode();
+        icom_request_mode();
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -215,19 +215,19 @@ void getRadioBand() {
 //*******************************************
 void setRadioBand(uint8_t modeid) {
 #ifdef ICOM
-  radioIcomSetMode(modeid, MODE_FILTER_DEFAULT);
+        radioIcomSetMode(modeid, MODE_FILTER_DEFAULT);
 #endif
 #ifdef YEASU
-  //TODO
+        //TODO
 #endif
 #ifdef KENWOOD
-  //TODO
+        //TODO
 #endif
 #ifdef ELECCRAFT
-  //TODO
+        //TODO
 #endif
 #ifdef OTHER
-  //TODO
+        //TODO
 #endif
 }
 //*******************************************
@@ -237,36 +237,36 @@ void setRadioBand(uint8_t modeid) {
 //*******************************************
 void checkBand(int32_t frq) {
 
-  int32_t f1;
-  f1 = frq / 1000000;
-  if (f1 == 1 && CURRENT_BAND != BAND_160M) {
-    CURRENT_BAND = BAND_160M;
-  }
-  if (f1 == 3 && CURRENT_BAND != BAND_80M) {
-    CURRENT_BAND = BAND_80M;
-  }
-  if (f1 == 5 && CURRENT_BAND != BAND_60M) {
-    CURRENT_BAND = BAND_60M;
-  }
-  if (f1 == 7 && CURRENT_BAND != BAND_40M) {
-    CURRENT_BAND = BAND_40M;
-  }
-  if (f1 == 10 && CURRENT_BAND != BAND_30M) {
-    CURRENT_BAND = BAND_30M;
-  }
-  if (f1 == 14 && CURRENT_BAND != BAND_20M) {
-    CURRENT_BAND = BAND_20M;
-  }
-  if (f1 == 18 && CURRENT_BAND != BAND_17M) {
-    CURRENT_BAND = BAND_17M;
-  }
-  if (f1 == 21 && CURRENT_BAND != BAND_15M) {
-    CURRENT_BAND = BAND_15M;
-  }
-  if (f1 == 24 && CURRENT_BAND != BAND_12M) {
-    CURRENT_BAND = BAND_12M;
-  }
-  if (f1 == 28 && CURRENT_BAND != BAND_10M) {
-    CURRENT_BAND = BAND_10M;
-  }
+        int32_t f1;
+        f1 = frq / 1000000;
+        if (f1 == 1 && CURRENT_BAND != BAND_160M) {
+                CURRENT_BAND = BAND_160M;
+        }
+        if (f1 == 3 && CURRENT_BAND != BAND_80M) {
+                CURRENT_BAND = BAND_80M;
+        }
+        if (f1 == 5 && CURRENT_BAND != BAND_60M) {
+                CURRENT_BAND = BAND_60M;
+        }
+        if (f1 == 7 && CURRENT_BAND != BAND_40M) {
+                CURRENT_BAND = BAND_40M;
+        }
+        if (f1 == 10 && CURRENT_BAND != BAND_30M) {
+                CURRENT_BAND = BAND_30M;
+        }
+        if (f1 == 14 && CURRENT_BAND != BAND_20M) {
+                CURRENT_BAND = BAND_20M;
+        }
+        if (f1 == 18 && CURRENT_BAND != BAND_17M) {
+                CURRENT_BAND = BAND_17M;
+        }
+        if (f1 == 21 && CURRENT_BAND != BAND_15M) {
+                CURRENT_BAND = BAND_15M;
+        }
+        if (f1 == 24 && CURRENT_BAND != BAND_12M) {
+                CURRENT_BAND = BAND_12M;
+        }
+        if (f1 == 28 && CURRENT_BAND != BAND_10M) {
+                CURRENT_BAND = BAND_10M;
+        }
 }

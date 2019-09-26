@@ -15,10 +15,11 @@ void startAutoTune(int type) {
                 }
 
         } else if (type == FOLLOW_TYPE) {
-                //TODO
+                //TODO FOLLOW_TYPE
+
 
         } else if (type == AUTO_TYPE) {
-                //TODO
+                //TODO AUTO_TYPE
         }
 }
 //*******************************************************************************
