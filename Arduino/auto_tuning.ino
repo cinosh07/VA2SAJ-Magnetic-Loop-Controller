@@ -1,3 +1,8 @@
+//*****************************************
+//
+//    Trigger Start Auto Tuning Process
+//
+//*****************************************
 void startAutoTune(int type) {
 
         if (type == CURRENT_POSITION_TYPE) {

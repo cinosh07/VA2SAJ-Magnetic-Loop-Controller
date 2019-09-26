@@ -334,7 +334,9 @@ const int TXMITING = 10;
 const int SEARCHING = 11;
 const int TUNING = 12;
 const int SETTINGS = 13;
-const char* MENU_STRING[] = {">Home", ">Coarse Tune", ">Fine Tune", ">GoTo Band 1", ">GoTo Band 2", ">GoTo Band 3", ">Reset Band 1", ">Reset Band 2", ">Reset Band 3", ">Waiting Radio ...", ">Transmitting", ">Searching Band", ">Tuning Frequency", ">Settings"};
+const int RETURN_HOME = 14;
+const int CALIBRATION = 15;
+const char* MENU_STRING[] = {">Home", ">Coarse Tune", ">Fine Tune", ">GoTo Band 1", ">GoTo Band 2", ">GoTo Band 3", ">Reset Band 1", ">Reset Band 2", ">Reset Band 3", ">Waiting Radio ...", ">Transmitting", ">Searching Band", ">Tuning Frequency", ">Settings", ">Return Home", ">Calibration"};
 int CURRENT_MODE = HOME;
 int PREVIOUS_MODE = -1;
 

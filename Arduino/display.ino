@@ -15,7 +15,7 @@ void initDisplay() {
 //*********************************
 void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
 {
-        if ((radio.trx_signal != 0 && CURRENT_MODE != TUNING) || CURRENT_MODE == COARSE_TUNE || CURRENT_MODE == FINE_TUNE ) {
+        if ((radio.trx_signal != 0 && CURRENT_MODE != TUNING && CURRENT_MODE != CALIBRATION) || CURRENT_MODE == COARSE_TUNE || CURRENT_MODE == FINE_TUNE ) {
 
                 resetDisplay();
                 PREVIOUS_MODE = CURRENT_MODE;
@@ -62,15 +62,22 @@ void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
                         //Display Searching
                         displaySearchingBand();
                 }
+                else if (CURRENT_MODE == RETURN_HOME) {
+                        //Display Searching
+                        displayReturnToHome();
+                }
         } else {
 
                 if (CURRENT_MODE == TUNING) {
                         displayTuning(ORIGIN_POSITION, MESSAGE);
                 }
+                if (CURRENT_MODE == CALIBRATION) {
+                        displayCalibration(ORIGIN_POSITION, MESSAGE);
+                }
                 if (radio.radioIsPresent == 1 && CURRENT_MODE != TUNING) {
                         // Display Transmitting SWR
                         displayTxmiting();
-                } else if (CURRENT_MODE != TUNING) {
+                } else if (CURRENT_MODE != TUNING && CURRENT_MODE != CALIBRATION ) {
                         //Display Waiting Radio
                         displaySearchingRadio();
                 }
@@ -350,11 +357,11 @@ void displayFineTune() {
 //
 //*********************************
 void displaySWR() {
-        //TODO Manage swr text color regarding SWR threshold
         //playAlarm(); if threshold limit reached
         //Do auto tune if activated and threshold limit reached
         boolean limitReached = false;
         limitReached = checkSWRLimit();
+        //Adjust swr text color regarding SWR threshold
         if (limitReached == true) {
                 display.setTextColor( ST7735_RED, ST7735_BLACK );
         } else {
@@ -452,6 +459,48 @@ void displayTuning(uint32_t ORIGIN_POSITION, String MESSAGE) {
         display.setTextColor( ST7735_YELLOW, ST7735_BLACK );
         display.setCursor( 4, 10 );
         display.println( " Auto Tuning" );
+        display.setTextSize( 1 );
+        display.setTextColor( ST7735_WHITE, ST7735_BLACK );
+        display.setCursor( 4, 40 );
+        display.print(  "SWR: " );
+        displaySWR();
+        display.setTextColor( ST7735_WHITE, ST7735_BLACK );
+        display.setCursor( 4, 55 );
+        display.print(  "Current Pos:" );
+        displayCurrentPosition(config.CURRENT_POSITION);
+        display.setCursor( 4, 70 );
+        display.print(  "Target Pos:" );
+        displayCurrentPosition(ORIGIN_POSITION);
+        display.setCursor( 4, 88 );
+        display.setTextSize( 2 );
+        if (MESSAGE == SWR_ERROR_TUNING_MESSAGE) {
+                display.setTextColor( ST7735_RED, ST7735_BLACK );
+        } else {
+                display.setTextColor( ST7735_GREEN, ST7735_BLACK );
+        }
+        if (MESSAGE == WAITING_RADIO_MODE_MESSAGE || MESSAGE == WAITING_RADIO_SAFE_POWER_MESSAGE || MESSAGE == WAITING_RADIO_TXMIT_MESSAGE) {
+                display.println( getSplitedMessage(MESSAGE, '|', 0) );
+                display.setCursor( 4, 108 );
+                display.println( getSplitedMessage(MESSAGE, '|', 1) );
+        } else {
+                display.println(  MESSAGE );
+                display.setCursor( 4, 108 );
+                display.println(  EMPTY_SECOND_LINE_MESSAGE );
+        }
+
+
+}
+//*********************************
+//
+//    Display Calibration ...
+//
+//*********************************
+void displayCalibration(uint32_t ORIGIN_POSITION, String MESSAGE) {
+
+        display.setTextSize( 2 );
+        display.setTextColor( ST7735_YELLOW, ST7735_BLACK );
+        display.setCursor( 4, 10 );
+        display.println( " Calibration" );
         display.setTextSize( 1 );
         display.setTextColor( ST7735_WHITE, ST7735_BLACK );
         display.setCursor( 4, 40 );

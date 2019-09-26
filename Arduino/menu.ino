@@ -70,7 +70,7 @@ void menuNavigationCheck() {
                         }
                         playShortBeep();
                 }
-                //Bouton A Mode Home ( Autotune this frequecy ) TODO
+                //Bouton A Mode Home ( Autotune this frequecy )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == HOME )
                 {
                         CURRENT_MODE == TUNING;
@@ -143,7 +143,18 @@ void menuNavigationCheck() {
                 //Bouton C Mode Settings ( Calibration Mode )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == SETTINGS)
                 {
+                        playBeep();
+                        CURRENT_MODE = RETURN_HOME;
+                        updateDisplay(0,"");
+                        returnToHome();
+                        CURRENT_MODE = CALIBRATION;
+                        updateDisplay(0,SCANNING_MESSAGE);
                         calibrate();
+                        playBeepBeep();
+                        resetScreenSaver();
+                        returnToHomeMenu();
+                        startSaveConfig();
+                        refreshTimer.check();
                 }
                 //****************************************************
                 //                      GOTO Page 1
@@ -151,22 +162,14 @@ void menuNavigationCheck() {
                 //Bouton Joystick Mode GOTOONE ( Return to home - Zero)
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == GOTOONE)
                 {
-
-      #ifdef LIMIT_SWITCH
-                        //TODO zeroing with limit switch
-      #else
                         playBeep();
-                        capacitorStepper.setSpeed(ultraHighSpeed);
-                        motorStart();
-                        goToCapacitorPosition(0, SEARCHING, "");
-                        motorStop();
-                        TUNED_STATUS = STATUS_ERROR;
+                        returnToHome();
                         checkMemories();
                         refreshTimer.check();
                         playBeepBeep();
                         resetScreenSaver();
                         returnToHomeMenu();
-      #endif
+
                 }
                 //Bouton A Mode GOTOONE ( Goto 10M position)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == GOTOONE )
@@ -424,7 +427,13 @@ void menuNavigationCheck() {
                 {
 
       #ifdef LIMIT_SWITCH
-                        //TODO zeroing with limit switch
+                        playBeep();
+                        returnToHome();
+                        checkMemories();
+                        refreshTimer.check();
+                        playBeepBeep();
+                        resetScreenSaver();
+                        returnToHomeMenu();
       #else
                         config.CURRENT_POSITION = 0;
                         config.ISCALIB = true;

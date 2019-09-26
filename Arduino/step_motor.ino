@@ -78,7 +78,7 @@ void goToCapacitorPosition(uint32_t position, int mode, String MESSAGE)
                         direction = ccw; // Counter Clockwise direction
                 }
                 //While the goal position is not reached, continue to move
-                while (config.CURRENT_POSITION != position)
+                while (config.CURRENT_POSITION != position && config.CURRENT_POSITION < maxSteps && config.CURRENT_POSITION > 0 && checkLimitSwitch() == HIGH)
                 {
                         capacitorStepper.step(direction);
                         resetScreenSaver();
@@ -94,16 +94,65 @@ void goToCapacitorPosition(uint32_t position, int mode, String MESSAGE)
                 gotoPositionLock = false;
         }
 }
-//*********************************
+//*************************************************************************
 //
-//  Calibration Procedure
+//             Step Motor Return to home with a limit switch
+//  Don't use this function directly. Use returnToHome() function instead
 //
-//*********************************
-void calibrate() {
-        //TODO Calibration Mode
-        playBeepBeep();
-        resetScreenSaver();
-        startSaveConfig();
-        returnToHomeMenu();
-        refreshTimer.check();
+//*************************************************************************
+void returnToHomeLimitSwitch() {
+        //zeroing with limit switch
+        if (gotoPositionLock == false) {
+                gotoPositionLock = true;
+                //Definning the absolute start position from the current position
+
+
+                resetScreenSaver();
+                int tempMode = CURRENT_MODE;
+                CURRENT_MODE = mode;
+                updateDisplay(0,"");
+                int direction = ccw;
+
+                //While the goal position is not reached, continue to move
+                while (checkLimitSwitch() == HIGH)
+                {
+                        capacitorStepper.step(direction);
+                        resetScreenSaver();
+                        config.CURRENT_POSITION = config.CURRENT_POSITION + direction;
+                }
+                CURRENT_MODE = tempMode;
+
+                config.CURRENT_POSITION = 0;
+                updateDisplay(position,"");
+                gotoPositionLock = false;
+        }
+}
+//***************************************
+//
+//  Check if limit switch is reached
+//
+//***************************************
+void checkLimitSwitch() {
+  #ifdef LIMIT_SWITCH
+        return digitalRead(limitSwitch);
+  #else
+        return HIGH;
+  #endif
+}
+//***************************************
+//
+//      Return to Home comnmand
+//
+//***************************************
+void returnToHome() {
+        TUNED_STATUS = STATUS_ERROR;
+        updateDisplay(0,"");
+  #ifdef LIMIT_SWITCH
+        returnToHomeLimitSwitch();
+  #else
+        capacitorStepper.setSpeed(ultraHighSpeed);
+        motorStart();
+        goToCapacitorPosition(0, SEARCHING, "");
+        motorStop();
+        #endif
 }
