@@ -3,7 +3,7 @@
 //  Check if limit switch is reached
 //
 //***************************************
-void checkLimitSwitch() {
+int checkLimitSwitch() {
   #ifdef LIMIT_SWITCH
         return digitalRead(limitSwitch);
   #else
@@ -39,7 +39,7 @@ void returnToHomeLimitSwitch() {
                 CURRENT_MODE = tempMode;
 
                 config.CURRENT_POSITION = 0;
-                updateDisplay(position,"");
+                updateDisplay(0,"");
                 gotoPositionLock = false;
         }
 }
