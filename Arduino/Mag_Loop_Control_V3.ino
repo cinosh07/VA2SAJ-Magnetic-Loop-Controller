@@ -2,7 +2,7 @@
    Mag loop antenna auto tuner
 
    Created 30 March. 2019
-   Updated september 23rd 2019
+   Updated september 26th 2019
    by Carl Tremblay - VA2SAJ
 
    code and circuitry inspired from
