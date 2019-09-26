@@ -1,1 +1,1 @@
-# VA2SAJ-Magnetic-Loop-Controller
+# VA2SAJ Automatic Magnetic Loop Controller Ecosystem
