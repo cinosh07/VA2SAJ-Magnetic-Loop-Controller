@@ -8,9 +8,7 @@ void startAutoTune(int type) {
                 } else if (TUNED_STATUS == STATUS_ERROR) {
                         //TODO STATUS_ERROR
                 } else if (TUNED_STATUS == OK) {
-
                         tuningProcess(config.CURRENT_POSITION);
-
                 }
 
         } else if (type == FOLLOW_TYPE) {
