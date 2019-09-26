@@ -22,7 +22,6 @@ void startAutoTune(int type) {
 // Verification si le step motor doit faire un autotune de sa nouvelle frequence
 //
 //*******************************************************************************
-
 void checkToAutotune() {
         if (config.AUTO_TUNE == true) {
                 //TODO startAutoTune(type) if neededggg
@@ -43,7 +42,6 @@ void tuningProcess(uint32_t position) {
         int swrSamplingTreshold = tuningThreshold[CURRENT_BAND];
         boolean CWScanObsolete = false;
         boolean tunedPositionFound = false;
-        //uint32_t currentMin[] = {0, 0}; //index 1 holds position of current min SWR value
         uint32_t currentMinPosition = 0;
         int currentMinSWR = 0;
         //index 0 holds the value
@@ -70,7 +68,6 @@ void tuningProcess(uint32_t position) {
         updateDisplay(position,WAITING_RADIO_TUNING_MESSAGE);
         delay(10);
         startRadioAutotune();
-        //playBeepBeep();
 
         currentMinPosition = config.CURRENT_POSITION;
         //read in the averaged swr sensor value here
