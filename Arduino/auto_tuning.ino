@@ -22,6 +22,7 @@ void startAutoTune(int type) {
 // Verification si le step motor doit faire un autotune de sa nouvelle frequence
 //
 //*******************************************************************************
+
 void checkToAutotune() {
         if (config.AUTO_TUNE == true) {
                 //TODO startAutoTune(type) if neededggg
