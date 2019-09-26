@@ -16,8 +16,6 @@ void startAutoTune(int type) {
 
         } else if (type == FOLLOW_TYPE) {
                 //TODO FOLLOW_TYPE
-
-
         } else if (type == AUTO_TYPE) {
                 //TODO AUTO_TYPE
         }
@@ -29,7 +27,7 @@ void startAutoTune(int type) {
 //*******************************************************************************
 void checkToAutotune() {
         if (config.AUTO_TUNE == true) {
-                //TODO startAutoTune(type) if needed
+                //TODO startAutoTune(type) if neededggg
                 //TODO Verifier si la frequence en cours a une memoire enregistrer
         } else if (toAutotuned) {
                 //toAutotuned
