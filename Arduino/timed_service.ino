@@ -17,6 +17,11 @@ void RefreshServices() {
                 updateDisplay(0,"");
         }
 }
+//******************************************************
+//
+//  Check if the current radio frequency has changed
+//
+//******************************************************
 void checkFrequencyChange() {
         if (config.CURRENT_FRQ != radio.oldFrequency) {
                 radio.oldFrequency = config.CURRENT_FRQ;
@@ -26,6 +31,11 @@ void checkFrequencyChange() {
                 checkToAutotune();
         }
 }
+//*******************************************************************************
+//
+//  Check if display refressh timer is over and display needed to be refreshed
+//
+//*******************************************************************************
 void checkTimeout() {
         if (timeoutCycle < returnToMenutimeout ) {
                 timeoutCycle = timeoutCycle + 1;
@@ -53,6 +63,11 @@ void checkTimeout() {
                 }
         }
 }
+//***************************************************************
+//
+//  Check if auto follow timer is over and ready to be executed
+//
+//***************************************************************
 void checkToFollowTimer() {
         if (toTunedPositionChange == true && gotoPositionLock == false) {
                 if (toTunedPositionTimeoutCycle < toSavedMemTimeout ) {
@@ -63,6 +78,11 @@ void checkToFollowTimer() {
                 }
         }
 }
+//*******************************************
+//
+//  Check if screensaver is to be displayed
+//
+//*******************************************
 void checkScreenSaver() {
         if (CURRENT_MODE == WAITING || CURRENT_MODE == TXMITING || CURRENT_MODE == SEARCHING || CURRENT_MODE == TUNING || radio.trx_signal == 0) {
                 resetScreenSaver();
@@ -77,40 +97,21 @@ void checkScreenSaver() {
                 }
         }
 }
-boolean checkSWRLimit() {
-  #ifdef SWR_SENSOR
-        if ( analogRead(swrSensorPin) > swrThreshod[CURRENT_BAND]) {
-                return true;
-        } else {
-                return false;
-        }
-  #endif
-  #ifdef SWR_RADIO
-        if (radio.trx_swr > (uint8_t) swrThreshod[CURRENT_BAND]) {
-                return true;
-        } else {
-                return false;
-        }
-  #endif
-}
-int getSWR() {
-  #ifdef SWR_SENSOR
-        return analogRead(swrSensorPin);
-  #endif
-  #ifdef SWR_RADIO
-        return radio.trx_swr;
-  #endif
-}
-void checkSWRAlarm(boolean limitReached) {
-        if (CURRENT_MODE == TXMITING && limitReached == true && swrAlarm == true) {
-                playAlarmSWR();
-        }
-}
+//***************************************
+//
+//  Start the save configuration timer
+//
+//***************************************
 void startSaveConfig() {
         toSavedConf = true;
         CONFIG_STATUS = PROCESSING;
         toSavedConfTimeoutCycle = 0;
 }
+//***************************************
+//
+//      Reset all the timers to 0
+//
+//***************************************
 void resetTimers() {
         toTunedPositionTimeoutCycle = 0;
         toSavedMemTimeoutCycle = 0;

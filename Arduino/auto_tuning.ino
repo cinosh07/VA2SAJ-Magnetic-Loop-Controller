@@ -218,23 +218,6 @@ void tuningProcess(uint32_t position) {
         blanckLCD();
         updateDisplay(position,"");
 }
-//************************************************
-//
-//   Echantillonnage de la valeur du SWR Sensor
-//
-//************************************************
-uint32_t swrAverage(int numSamples) {
-
-        //returns averaged value of numsamples swrValue samples
-        uint32_t swrValue = 0;
-        for (int i = 0; i < numSamples; i++)
-        {
-                swrValue += (uint32_t) analogRead(swrSensorPin);
-                delay(5);//wait 5ms between samples
-        }
-        //average swrvalue
-        return swrValue / (uint32_t) numSamples;
-}
 //*************************************************************
 //
 //   Get the stepper position offset for Side band Operation
