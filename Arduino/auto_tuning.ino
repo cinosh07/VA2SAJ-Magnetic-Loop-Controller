@@ -15,8 +15,6 @@ void startAutoTune(int type) {
                 //TODO FOLLOW_TYPE
         } else if (type == AUTO_TYPE) {
                 //TODO AUTO_TYPE
-
-
         }
 }
 //*******************************************************************************
