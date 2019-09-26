@@ -220,7 +220,7 @@ void tuningProcess(uint32_t position) {
 //************************************************
 uint32_t swrAverage(int numSamples) {
 
-        //returns averaged value of numsamples swr samples
+        //returns averaged value of numsamples swrValue samples
         uint32_t swrValue = 0;
         for (int i = 0; i < numSamples; i++)
         {
