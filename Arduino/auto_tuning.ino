@@ -6,8 +6,7 @@ void startAutoTune(int type) {
                         tuningProcess(getMemoryPosition(config.CURRENT_FRQ));
 
                 } else if (TUNED_STATUS == STATUS_ERROR) {
-                        //TODO
-
+                        //TODO STATUS_ERROR
                 } else if (TUNED_STATUS == OK) {
 
                         tuningProcess(config.CURRENT_POSITION);
