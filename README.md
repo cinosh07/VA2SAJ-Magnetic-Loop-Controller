@@ -1,7 +1,7 @@
 # DIY - VA2SAJ - Build your Fully Automatic Tuner for ham radio magnetic loop antenna.
 
 
-![DIY Magnetic Lopp Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
+![DIY Magnetic Loop Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
 
 **Features:**<br>
 -Input voltage 12V-36V<br>
