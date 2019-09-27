@@ -13,13 +13,13 @@
 -Icom Radio Cat Control compatible<br>
 -Ham Radio Deluxe Friendly<br>
 **Futur Development Features:**<br>
--Memories backed up on the cloud (Arduino Due only)<br>
--Cloud manageable (Arduino Due only)<br>
--App manageable (Arduino Due only)<br>
 -Yaesu Radio Cat Control compatible<br>
 -Kennwood Radio Cat Control compatible<br>
 -Generic Radio Cat Control compatible<br>
 -Ham Radio Deluxe Control Compatible<br>
+-Memories backed up on the cloud (Arduino Due only)<br>
+-Cloud manageable (Arduino Due only)<br>
+-App manageable (Arduino Due only)<br>
 
 
 ![Magnetic Lopp Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
