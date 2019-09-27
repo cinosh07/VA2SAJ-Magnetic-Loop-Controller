@@ -3,7 +3,7 @@
 
 ![DIY Magnetic Lopp Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
 
-**Features:**
+**Features:**<br>
 -Auto tuning<br>
 -Auto follow radio frequency to saved memories<br>
 -25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on sd card<br>
