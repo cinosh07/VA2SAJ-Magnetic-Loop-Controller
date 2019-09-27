@@ -10,15 +10,15 @@
 -Screensaver<br>
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
--Icom Radio Control compatible<br>
+-Icom Radio Cat Control compatible<br>
 -Ham Radio Deluxe Friendly<br>
 **Futur Development Features:**<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
 -Cloud manageable (Arduino Due only)<br>
 -App manageable (Arduino Due only)<br>
--Yaesu Radio Control compatible<br>
--Kennwood Radio Control compatible<br>
--Generic Radio Control compatible<br>
+-Yaesu Radio Cat Control compatible<br>
+-Kennwood Radio Cat Control compatible<br>
+-Generic Radio Cat Control compatible<br>
 -Ham Radio Deluxe Control Compatible<br>
 
 
