@@ -14,7 +14,7 @@
 -Ham Radio Deluxe Friendly<br>
 **Futur Development Features:**<br>
 -Yaesu Radio Cat Control compatible<br>
--Kennwood Radio Cat Control compatible<br>
+-Kenwood Radio Cat Control compatible<br>
 -Generic Radio Cat Control compatible<br>
 -Ham Radio Deluxe Control Compatible<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
