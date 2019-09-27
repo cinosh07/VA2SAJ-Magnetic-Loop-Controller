@@ -2,4 +2,4 @@
 
 
 
-![DIY Magnetic Lopp Tuner](https://photos.app.goo.gl/cmojnkbPNZqQ5knA7)
+![DIY Magnetic Lopp Tuner](https://drive.google.com/uc?export=view&id=cmojnkbPNZqQ5knA7)
