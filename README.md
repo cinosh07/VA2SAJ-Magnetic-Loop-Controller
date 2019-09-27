@@ -18,3 +18,5 @@
 ![Magnetic Lopp Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
 
 `Test de code `
+
+![Vacuum Variable Capacitor controlled by stepper motor](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190801_162644.jpg)
