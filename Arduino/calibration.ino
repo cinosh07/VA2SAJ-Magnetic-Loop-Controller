@@ -105,11 +105,11 @@ void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t fr
                 gotoPositionLock = false;
         }
 }
-//***************************************************
+//*************************************************************************************
 //
-//   Join and Sort frequencies array to calibrate
+//   Join and Sort calibration Frequencies and default Memories arrays to calibrate
 //
-//***************************************************
+//*************************************************************************************
 uint32_t getFrequenciesToCalibrate() {
         //Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
         // calibrationFrequencies defaultMemories
