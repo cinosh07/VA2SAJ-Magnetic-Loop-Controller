@@ -16,7 +16,7 @@
 -Yaesu Radio Cat Control compatible<br>
 -Kenwood Radio Cat Control compatible<br>
 -Generic Radio Cat Control compatible<br>
--Ham Radio Deluxe Control Server Compatible<br>
+-Ham Radio Deluxe Control Server Compatible (Arduino Due only)<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
 -Cloud manageable (Arduino Due only)<br>
 -App manageable (Arduino Due only)<br>
