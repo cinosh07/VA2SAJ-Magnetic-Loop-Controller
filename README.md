@@ -13,7 +13,7 @@
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
 -Icom Radio Cat Control compatible<br>
--Ham Radio Deluxe / Rig Control Friendly<br><br>
+-Ham Radio Deluxe / Rig Control Friendly<br>
 
 **Tutorials**<br>
 [Click here to access the wiki](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/wiki)
