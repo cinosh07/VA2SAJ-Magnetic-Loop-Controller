@@ -1,8 +1,18 @@
+//*********************************
+//
+//         Play Beep
+//
+//*********************************
 void playBeep() {
         tone(buzzer, 1000); // Send 1KHz sound signal...
         delay(500);
         noTone(buzzer);
 }
+//*********************************
+//
+//       Play Beep beep
+//
+//*********************************
 void playBeepBeep() {
         tone(buzzer, 1000); // Send 1KHz sound signal...
         delay(250);
@@ -12,11 +22,21 @@ void playBeepBeep() {
         delay(250);
         noTone(buzzer);
 }
+//*********************************
+//
+//       Play Short Beep
+//
+//*********************************
 void playShortBeep() {
         tone(buzzer, 1000); // Send 1KHz sound signal...
         delay(250);
         noTone(buzzer);
 }
+//*********************************
+//
+//    Play SWR to hight Alarm
+//
+//*********************************
 void playAlarmSWR() {
 
         int toneOne = 2000;
@@ -36,6 +56,11 @@ void playAlarmSWR() {
 
         }
 }
+//*********************************
+//
+//     Play no SD Card Alarm
+//
+//*********************************
 void playAlarmNOSD() {
         int toneOne = 2000;
         int toneTwo = 1000;
@@ -54,6 +79,11 @@ void playAlarmNOSD() {
 
         }
 }
+//*********************************
+//
+//    Play no network Alarm
+//
+//*********************************
 void playAlarmNONETWORK() {
         int toneOne = 2000;
         int toneTwo = 1000;
@@ -72,6 +102,11 @@ void playAlarmNONETWORK() {
 
         }
 }
+//*********************************
+//
+//      Play no cloud Alarm
+//
+//*********************************
 void playAlarmNOCLOUD() {
         int toneOne = 2000;
         int toneTwo = 1000;
