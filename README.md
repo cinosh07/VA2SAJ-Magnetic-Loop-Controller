@@ -5,15 +5,15 @@
 
 **Features:**
 
-Auto tuning
-Auto follow radio frequency to saved memories
-25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on sd card.
-Memories backed up on the cloud (Arduino Due only)
-Cloud manageable (Arduino Due only)
-App manageable (Arduino Due only)
-Screensaver
-Buzzer confirmation-alarm
-Auto Calibration
+Auto tuning<br>
+-Auto follow radio frequency to saved memories<br>
+-25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on sd card<br>
+-Memories backed up on the cloud (Arduino Due only)<br>
+-Cloud manageable (Arduino Due only)<br>
+-App manageable (Arduino Due only)<br>
+-Screensaver<br>
+-Buzzer confirmation-alarm<br>
+-Auto Calibration<br>
 
 
 ![Magnetic Lopp Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
