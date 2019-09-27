@@ -12,15 +12,17 @@
 -Auto Calibration<br>
 -Icom Radio Cat Control compatible<br>
 -Ham Radio Deluxe / Rig Control Friendly<br><br>
-**Futur Development Features:**<br>
--Yaesu Radio Cat Control compatible<br>
--Kenwood Radio Cat Control compatible<br>
--Generic Radio Cat Control compatible<br>
--Auto Multiple Antennas Switching Support<br>
--Ham Radio Deluxe and Rig Control API Server Compatible. (Arduino Due only) This will allow the tuner to control any radio, regardless of the brand or communication protocol. Allowing to switch radio seamlessly for multiple radios/antennas environment with the tuner.<br>
--Memories backed up on the cloud (Arduino Due only)<br>
--Cloud manageable (Arduino Due only)<br>
--App manageable (Arduino Due only)<br>
+**Future Development Features:**<br>
+-[Yaesu Radio Cat Control compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/1)<br>
+-[Kenwood Radio Cat Control compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/2)<br>
+-[Generic Radio Cat Control compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/3)<br>
+-[Auto Multiple Antennas Switching Support](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/6)<br>
+-[Ham Radio Deluxe](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/9) and [Rig Control API Server Compatible.](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/6) (Arduino Due only) This will allow the tuner to control any radio, regardless of the brand or communication protocol. Allowing to switch radio seamlessly for multiple radios/antennas environment with the tuner.<br>
+-[Memories backed up on the cloud](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/9) (Arduino Due only)<br>
+-[Cloud manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/7) (Arduino Due only)<br>
+-[App manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/8) (Arduino Due only)<br>
+
+I have created issues for each of those future features. Priorities will be putted on the most wanted features. Please thumbs up the features you want to be released. You can access this by clicking on the future features links above.
 
 
 ![Magnetic Lopp Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
