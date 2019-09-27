@@ -11,7 +11,7 @@
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
 -Icom Radio Cat Control compatible<br>
--Ham Radio Deluxe Friendly<br><br>
+-Ham Radio Deluxe / Rig Control Friendly<br><br>
 **Futur Development Features:**<br>
 -Yaesu Radio Cat Control compatible<br>
 -Kenwood Radio Cat Control compatible<br>
