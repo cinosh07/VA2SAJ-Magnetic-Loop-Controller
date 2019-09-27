@@ -235,7 +235,7 @@ void getRadioBand() {
 //     Radio - Set Radio Band
 //
 //*******************************************
-void setRadioBand(uint8_t modeid) {
+void setRadioMode(uint8_t modeid) {
 #ifdef ICOM
         radioIcomSetMode(modeid, MODE_FILTER_DEFAULT);
 #endif
@@ -252,6 +252,7 @@ void setRadioBand(uint8_t modeid) {
         //TODO
 #endif
 }
+
 //*******************************************
 //
 // Verification de la bande Freq. en cours

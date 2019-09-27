@@ -411,6 +411,53 @@ void icom_request_mode(void)
 }
 //---------------------------------------------------------------------------------
 //
+//               TODO  ICOM CI-V style Set Radio frequency
+//
+//---------------------------------------------------------------------------------
+void icom_set_frequency(uint32_t frequency)
+{
+        // Transmit a request to read operating frequency
+        // TODO Transform frequency to Byte
+        // Convert BCD to value
+        // civ_value = (transceiver_in_string[5] & 0x0f); // Hz
+        // civ_value += 10 * ((transceiver_in_string[5] & 0xf0) >> 4); // 10 x Hz
+        //
+        // civ_value += 100 *  (transceiver_in_string[6] & 0x0f);// 100 x Hz
+        // civ_value += 1000 * ((transceiver_in_string[6] & 0xf0) >> 4); // kHz
+        //
+        // civ_value += (uint32_t) 10000 * (transceiver_in_string[7] & 0x0f); // 10 x kHz
+        // civ_value += (uint32_t) 100000 * ((transceiver_in_string[7] & 0xf0) >> 4); // 100 x kHz
+        //
+        // civ_value += (uint32_t) 1000000 * (transceiver_in_string[8] & 0x0f); // MHz
+        // civ_value += (uint32_t) 10000000 * ((transceiver_in_string[8] & 0xf0) >> 4); // 10 x MHz
+        //
+        // civ_value += (uint32_t) 100000000 * (transceiver_in_string[9] & 0x0f); // 100 x MHz
+        // civ_value += (uint32_t) 1000000000 * ((transceiver_in_string[9] & 0xf0) >> 4); // GHz
+        uint8_t freqFirstByte = 0xE0;
+        uint8_t freqSecondByte = 0xE0;
+        uint8_t freqThirdByte = 0xE0;
+        uint8_t freqForthByte = 0xE0;
+        uint8_t freqFifthByte = 0xE0;
+
+        uint8_t req[] = {START_BYTE, START_BYTE, radio_address, CONTROLLER_ADDRESS, MASTER_CMD_WRITE_FREQ, freqFirstByte, freqSecondByte, freqThirdByte, freqForthByte, freqFifthByte, STOP_BYTE};
+#ifdef DEBUG
+        Serial.print(">");
+#endif
+        for (uint8_t i = 0; i < sizeof(req); i++) {
+                Serial1.write(req[i]);
+#ifdef DEBUG
+                if (req[i] < 16) Serial.print("0");
+                Serial.print(req[i], HEX);
+                Serial.print(" ");
+#endif
+        }
+#ifdef DEBUG
+        Serial.println();
+#endif
+        delayProcessCatMessages(SERIAL_DELAY);
+}
+//---------------------------------------------------------------------------------
+//
 //                      ICOM CI-V style Set Power
 //
 //---------------------------------------------------------------------------------

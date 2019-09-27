@@ -29,12 +29,33 @@ void calibrate() {
         //TODO Calibration Mode
         uint32_t goalPosition = maxSteps;
 
-        //TODO Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
+        //Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
         uint32_t frequenciesArray[20] = getFrequenciesToCalibrate();
+        int frequencyToCalibrateID = 0;
+        //Get the right frequency to scan from tuning frequency array. And set the radio to this frequency
+        setRadioFrequency(frequenciesArray[frequencyToCalibrateID]);
+        PREVIOUS_TRX_MODE = radio.trx_mode;
+        setRadioMode(MODE_TYPE_RTTY);
+        delay(10);
+        getRadioStatus();
+        delay(10);
+        receiveRadioCom();
+        while (radio.trx_mode != MODE_TYPE_RTTY) {
+                setRadioMode(MODE_TYPE_RTTY);
+                delay(10);
+                getRadioStatus();
+                delay(10);
+                receiveRadioCom();
+                updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
+        }
+
+
+
+
 
         while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH)
         {
-                //TODO get the right frequency to scan from tuning frequency array. And set the radio to this frequency
+
                 capacitorStepper.setSpeed(ultraHighSpeed);
 
                 calibrateCapacitor(goalPosition, TUNING, SCANNING_MESSAGE, frequenciesArray);
@@ -106,17 +127,28 @@ void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t fr
 //
 //***************************************************
 uint32_t getFrequenciesToCalibrate() {
-        //TODO Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
-        int a[];
-        int size;
+        //Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
+        // calibrationFrequencies defaultMemories
         uint32_t frequenciesArray[20];
-        for(int i=0; i<(size-1); i++) {
-                for(int o=0; o<(size-(i+1)); o++) {
-                        if(a[o] > a[o+1]) {
-                                int t = a[o];
-                                a[o] = a[o+1];
-                                a[o+1] = t;
+        int count = 0;
+        boolean up = false;
+        for(int i=0; i<20; i++) {
+                if (up == false) {
+                        up = true;
+                        uint32_t freq = 0;
+                        if (calibrationFrequencies[count] < defaultMemories[count]) {
+                                frequenciesArray[i] = calibrationFrequencies[count];
+                        } else {
+                                frequenciesArray[i] = defaultMemories[count];
                         }
+                } else {
+                        if (calibrationFrequencies[count] > defaultMemories[count]) {
+                                frequenciesArray[i] = calibrationFrequencies[count];
+                        } else {
+                                frequenciesArray[i] = defaultMemories[count];
+                        }
+                        count = count + 1;
+                        up = false;
                 }
         }
         return frequenciesArray;
