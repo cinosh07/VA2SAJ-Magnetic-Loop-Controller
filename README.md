@@ -11,7 +11,7 @@
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
 -Icom Radio compatible<br>
--Ham Radio Deluxe Compatible<br>
+-Ham Radio Deluxe Friendly<br>
 **Futur Development Features:**<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
 -Cloud manageable (Arduino Due only)<br>
@@ -19,6 +19,7 @@
 -Yaesu Radio compatible<br>
 -Kennwood Radio compatible<br>
 -Generic Radio compatible<br>
+-Ham Radio Deluxe Compatible<br>
 
 
 ![Magnetic Lopp Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
