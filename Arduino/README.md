@@ -5,9 +5,9 @@ Mega 2560* and Arduino Due compatible
 
 ![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/IMG_20190924_223347.jpg)
 
-![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/va2saj/IMG_20190903_202258.jpg)
+![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/IMG_20190903_202258.jpg)
 
-![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/va2saj/IMG_20190912_222157.jpg)
+![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/IMG_20190912_222157.jpg)
 
 ![DIY Magnetic Lopp Tuner](https://www.qrz.com/hampages/va2saj/IMG_20190915_224221.jpg)
 
