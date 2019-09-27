@@ -29,7 +29,7 @@ void calibrate() {
         //TODO Calibration Mode
         uint32_t goalPosition = maxSteps;
 
-        //TODO Aggregate calibrationFrequencies and defaultMemories in one array and sort by ascendding order
+        //TODO Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
         uint32_t frequenciesArray[20] = getFrequenciesToCalibrate();
 
         while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH)
@@ -106,6 +106,7 @@ void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t fr
 //
 //***************************************************
 uint32_t getFrequenciesToCalibrate() {
+        //TODO Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
         int a[];
         int size;
         uint32_t frequenciesArray[20];
