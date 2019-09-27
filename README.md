@@ -1,6 +1,5 @@
-# DIY - VA2SAJ Automatic Magnetic Loop Controller
+# DIY - VA2SAJ Automatic Magnetic Loop Controller for ham radio magnetic loop antenna.
 
-# for ham radio magnetic loop antenna.
 
 ![DIY Magnetic Lopp Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
 
