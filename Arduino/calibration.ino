@@ -1,13 +1,9 @@
 //*********************************
 //
-//  Calibration Procedure
+//  Calibration Process TODO
 //
 //*********************************
 void calibrate() {
         //TODO Calibration Mode
-        playBeepBeep();
-        resetScreenSaver();
-        startSaveConfig();
-        returnToHomeMenu();
-        refreshTimer.check();
+
 }

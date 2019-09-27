@@ -1,8 +1,8 @@
-//*************************************************************************
+//**************************************************************************************
 //
-// Verification si le step motor doit aller automatiquement a sa position
+// Check if capacitor stepper is needed to move to the current radio frequency position
 //
-//*************************************************************************
+//**************************************************************************************
 void checkToFollow() {
         if (config.AUTO_FOLLOW == true && TUNED_STATUS == WRONG_POSITION && toTunedPositionChange == true) {
                 toTunedPositionChange == false;
@@ -21,23 +21,16 @@ void checkToFollow() {
                 returnToHomeMenu();
         }
 }
-//*********************************
+//*******************************************************
 //
-//    Controle of Step Moteur
+//                  Step Motor Stop
 //
-//*********************************
-// void stepMotor(int direction)
-// {
-//         motorStart();
-//         capacitorStepper.step(direction);
-//         config.CURRENT_POSITION = config.CURRENT_POSITION + direction;
-// }
-//*********************************
+//    This is needed to prevent driver from running
+// current through a stationary winding and preventing
+//              noise in the rf signal
 //
-//      Step Motor Stop
-//
-//*********************************
-//This is needed to prevent driver from running current through a stationary winding and preventing noise in the rf signal
+//*******************************************************
+
 void motorStop()
 {
         digitalWrite(sleeppin, LOW);
@@ -58,9 +51,9 @@ void motorStart()
 //  Step Motor Go To Capacitor Position
 //
 //***************************************
-//Move capacitor step motor quickly to the provided position
 void goToCapacitorPosition(uint32_t position, int mode, String MESSAGE)
 {
+        //Move capacitor step motor quickly to the provided position
         if (gotoPositionLock == false) {
                 gotoPositionLock = true;
                 //Definning the absolute start position from the current position

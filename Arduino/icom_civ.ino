@@ -1,9 +1,9 @@
 
-//*********************************
+//***********************************************
 //
-// Initialisation Port Serie CI-V
+// Serial port initialization for CI-V protocol
 //
-//*********************************
+//***********************************************
 #ifdef ICOM
 void initCat() {
         configRadioBaud(9600);
@@ -33,7 +33,7 @@ void initCat() {
 }
 //*******************************************************************
 //
-//         Check if radio is currently transmitting
+//             Check if radio is currently transmitting
 //
 //*******************************************************************
 int icom_getRadioTxmitStatus() {
@@ -49,7 +49,7 @@ int icom_getRadioTxmitStatus() {
 }
 //*******************************************************************
 //
-//   Lire les valeurs recu sur le port serie provenant de la radio
+//                 Request CI-V radio status
 //
 //*******************************************************************
 void getIcomRadioStatus() {
@@ -67,23 +67,21 @@ void getIcomRadioStatus() {
         receiveRadioCom();
 }
 
-//*********************************
+//********************************************
 //
-//Verification si le radio est disponible
+//  Check if Radio serial com is availlable
 //
-//*********************************
+//********************************************
 void checkRadioCom() {
         if (Serial1.available() > 0)
         {
                 incomingByte = Serial1.read(); //read the incoming byte
-                //    Serial1.print("Received: ");
-                //    Serial1.println(incomingByte, DEC);   //send the byte to the terminal in decimal format
         }
 }
 
 //*********************************
 //
-//  Traitement message CI-V
+//     Process CI-V message
 //
 //*********************************
 void processCatMessages()
@@ -123,7 +121,6 @@ void processCatMessages()
 
                                                 civ_value += (uint32_t) 100000000 * (transceiver_in_string[9] & 0x0f); // 100 x MHz
                                                 civ_value += (uint32_t) 1000000000 * ((transceiver_in_string[9] & 0xf0) >> 4); // GHz
-
                                                 //
                                                 // Update running frequency of the application
                                                 //
@@ -136,39 +133,31 @@ void processCatMessages()
                                                                 radio.radioIsPresent = 1;
                                                         }
                                                 }
-                                                //              radio.ack = true;
                                         }
                                         // Check if this is an incoming Power Level Indication message
                                         else if ((transceiver_in_string[4] == MASTER_CMD_TOOLS) && (transceiver_in_string[5] == SUB_CMD_TOOLS_RF_POWER))
                                         {
-                                                //radio.pwr = transceiver_in_string[7];
+
                                                 radio.trx_byte_pwr[0] = transceiver_in_string[6];
                                                 radio.trx_byte_pwr[1] = transceiver_in_string[7];
 
                                                 radio.trx_pwr = 100 * transceiver_in_string[6];
                                                 radio.trx_pwr += transceiver_in_string[7];
-                                                //              radio.pwr = true;                              // Indicate that we have successfully read power control level
-                                                //              radio.ack = true;
                                         } else if ((transceiver_in_string[4] == MASTER_CMD_SIGNAL) && (transceiver_in_string[5] == SUB_CMD_SIGNAL_SMETER))
                                         {
 
                                                 radio.trx_signal = 100 * transceiver_in_string[6];
                                                 radio.trx_signal += transceiver_in_string[7];
-                                                //              radio.pwr = true;                              // Indicate that we have successfully read power control level
-                                                //              radio.ack = true;
+
                                         }
                                         else if ((transceiver_in_string[4] == MASTER_CMD_SIGNAL) && (transceiver_in_string[5] == SUB_CMD_SIGNAL_SWR_METER))
                                         {
                                                 radio.trx_swr = 100 * transceiver_in_string[6];
                                                 //              trx_swr += transceiver_in_string[7];
-                                                //              radio.pwr = true;                              // Indicate that we have successfully read power control level
-                                                //              radio.ack = true;
                                         }
                                         else if (transceiver_in_string[4] == MASTER_CMD_READ_FREQ) // Read active Mode (LSB, USB etc)
                                         {
-                                                printFrequency();
-                                                //              radio.mode = true;                             // Indicate that we have successfully read active mode
-                                                //              radio.ack = true;
+                                                saveFrequency();
                                         }
                                         // Check if this is an incoming Mode and Filter Indication message
                                         else if (transceiver_in_string[4] == MASTER_CMD_READ_MODE) // Read active Mode (LSB, USB etc)
@@ -180,24 +169,20 @@ void processCatMessages()
                                                         checkMemories();
                                                 }
                                                 prevTrxMode = radio.trx_mode;
-
-                                                //              radio.mode = true;                             // Indicate that we have successfully read active mode
-                                                //              radio.ack = true;
                                         }
                                         // Check if this is a Positive acknowlegement message
                                         else if (transceiver_in_string[4] == RESPONSE_OK) // OK
                                         {
-                                                //              radio.ack = true;
+                                                //TODO
                                         }
                                         // Check if this is a Negative acknowlegement message
                                         else if (transceiver_in_string[4] == RESPONSE_ERROR) // OK
                                         {
-                                                //              radio.ack = false;
+                                                //TODO
                                         }
                                 }
                         }
                 }
-
 #ifdef DEBUG
                 Serial.print("<");
                 for (uint8_t i = 0; i < sizeof(transceiver_in_string); i++) {
@@ -216,10 +201,9 @@ void processCatMessages()
         }
 #endif
 }
-
 //***************************************
 //
-//CI-V Reception du mode de transmission
+//      CI-V Receiving Transmit Mode
 //
 //***************************************
 void printMode(void)
@@ -230,11 +214,10 @@ void printMode(void)
         Serial.println(mode[transceiver_in_string[5]]);
 #endif
         //transceiver_in_string[6] -> 01 - Wide, 02 - Medium, 03 - Narrow
-
 }
 //*********************************
 //
-// CI-V configuration du baud rate
+// CI-V baud rate configuration
 //
 //*********************************
 void configRadioBaud(uint16_t baudrate)
@@ -243,7 +226,6 @@ void configRadioBaud(uint16_t baudrate)
                 Serial1.end();
                 Serial1.begin(baudrate);
         }
-
         baud_rate = baudrate;
 
         switch (baud_rate) {
@@ -283,7 +265,6 @@ uint8_t readLine(void)
 #ifdef MIRRORCAT
                 Serial.print(byte, BYTE);
 #endif
-
                 transceiver_in_string[counter++] = byte;
                 if (STOP_BYTE == byte) break;
 
@@ -291,11 +272,14 @@ uint8_t readLine(void)
         }
         return counter;
 }
-
-void delayloop(uint16_t msec)
+//---------------------------------------------------------------------------------
+//
+//     ICOM CI-V Command to execute after a request to get the asynch callback
+//
+//---------------------------------------------------------------------------------
+void delayProcessCatMessages(uint16_t msec)
 {
         unsigned long starttime, stoptime;
-
         starttime = millis();
         stoptime  = starttime + msec;
 
@@ -305,9 +289,10 @@ void delayloop(uint16_t msec)
         }
 }
 //---------------------------------------------------------------------------------
-// ICOM CI-V style polling for frequency
-//---------------------------------------------------------------------------------
 //
+//                 ICOM CI-V style polling for frequency
+//
+//---------------------------------------------------------------------------------
 void icom_request_frequency(void)
 {
         // Transmit a request to read operating frequency
@@ -326,16 +311,13 @@ void icom_request_frequency(void)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
-//
-//---------------------------------------------------------------------------------
-// Autotune stuff
-//
-//---------------------------------------------------------------------------------
-// ICOM CI-V style Request Power
 //---------------------------------------------------------------------------------
 //
+//                    ICOM CI-V style Request Power
+//
+//---------------------------------------------------------------------------------
 void icom_request_pwr(void)
 {
         // Transmit a request to read RF Power Level setting
@@ -354,12 +336,13 @@ void icom_request_pwr(void)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
 //---------------------------------------------------------------------------------
-// ICOM CI-V style Request S Signal
-//---------------------------------------------------------------------------------
 //
+//                ICOM CI-V style Request S Signal Strenght
+//
+//---------------------------------------------------------------------------------
 void icom_request_signal(void)
 {
         // Transmit a request to read ModeRF Power Level setting
@@ -378,13 +361,13 @@ void icom_request_signal(void)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
-//
-//---------------------------------------------------------------------------------
-// ICOM CI-V style Request Mode and Filter
 //---------------------------------------------------------------------------------
 //
+//                ICOM CI-V style Request Mode and Filter
+//
+//---------------------------------------------------------------------------------
 void icom_request_mode(void)
 {
         // Transmit a request to read ModeRF Power Level setting
@@ -403,13 +386,13 @@ void icom_request_mode(void)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
-//
-//---------------------------------------------------------------------------------
-// ICOM CI-V style Set Power
 //---------------------------------------------------------------------------------
 //
+//                      ICOM CI-V style Set Power
+//
+//---------------------------------------------------------------------------------
 void icom_set_pwr(uint8_t pwrFirstByte, uint8_t pwrSecondByte)
 {
         // Set RF Power Level setting
@@ -428,7 +411,7 @@ void icom_set_pwr(uint8_t pwrFirstByte, uint8_t pwrSecondByte)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
 //*********************************
 //
@@ -452,12 +435,13 @@ void radioIcomSetMode(uint8_t modeid, uint8_t modewidth)
 #ifdef DEBUG
         Serial.println();
 #endif
-        delayloop(SERIAL_DELAY);
+        delayProcessCatMessages(SERIAL_DELAY);
 }
 //---------------------------------------------------------------------------------
-// ICOM CI-V style Set Transmit Mode
-//---------------------------------------------------------------------------------
 //
+//                 ICOM CI-V style Set Transmit Mode
+//
+//---------------------------------------------------------------------------------
 void icom_set_tx(uint8_t tx)
 {
         // Set Transmit on or off
@@ -477,39 +461,35 @@ void icom_set_tx(uint8_t tx)
 #ifdef DEBUG
                 Serial.println();
 #endif
-                delayloop(SERIAL_DELAY);
-
+                delayProcessCatMessages(SERIAL_DELAY);
         } else {
                 //Use DTR-CTS to trigger PTT
                 icom_set_tx_dtr(tx);
         }
-
-
 }
 //--------------------------------------------------------------------------------------------------------------
-// ICOM CI-V style Set Transmit Mode - DTR -CTS Mode (To use when radion doesn't support transmitting over cat)
-//--------------------------------------------------------------------------------------------------------------
 //
+// ICOM CI-V style Set Transmit Mode - DTR -CTS Mode (To use when radion doesn't support transmitting over cat)
+//
+//--------------------------------------------------------------------------------------------------------------
 void icom_set_tx_dtr(uint8_t tx)
 {
         // Set Transmit on or off DTR-CTS Mode
         if (tx == 0x00) {
                 digitalWrite(CTS_PIN, HIGH);
                 digitalWrite(DTR_PIN, HIGH);
-
                 delay(100);
                 playBeep();
         } else if (tx == 0x01) {
                 digitalWrite(CTS_PIN, LOW);
                 digitalWrite(DTR_PIN, LOW);
-
                 delay(100);
                 playBeep();
         }
 }
 //*********************************
 //
-//   CI-V Envoyer une Requete
+//       Send CI-V Request
 //
 //*********************************
 void sendCatRequest(uint8_t requestCode)
@@ -530,11 +510,11 @@ void sendCatRequest(uint8_t requestCode)
         Serial.println();
 #endif
 }
-//*********************************
+//********************************************
 //
-//   CI-V Recherche Radio
+//   CI-V Serial port for Radio presence
 //
-//*********************************
+//********************************************
 bool searchRadio()
 {
 
@@ -545,7 +525,6 @@ bool searchRadio()
 #endif
                 configRadioBaud(baudRates[baud]);
                 sendCatRequest(MASTER_CMD_READ_FREQ);
-
                 if (readLine() > 0)
                 {
                         if (transceiver_in_string[0] == START_BYTE && transceiver_in_string[1] == START_BYTE) {
@@ -558,18 +537,16 @@ bool searchRadio()
                         return true;
                 }
         }
-
         radio_address = 0x5E;
         return false;
 }
 //******************************************
 //
-//  CI-V Reception de la frequence en cours
+//    CI-V Receiving current frequency
 //
 //******************************************
-void printFrequency(void)
+void saveFrequency(void)
 {
-
         config.CURRENT_FRQ = 0;
         //FE FE E0 42 03 <00 00 58 45 01> FD ic-820
         //FE FE 00 40 00 <00 60 06 14> FD ic-732
@@ -579,10 +556,8 @@ void printFrequency(void)
                 if (transceiver_in_string[9 - i] < 16) Serial.print("0");
                 Serial.print(transceiver_in_string[9 - i], HEX);
 #endif
-
                 config.CURRENT_FRQ += (transceiver_in_string[9 - i] >> 4) * decMulti[i * 2];
                 config.CURRENT_FRQ += (transceiver_in_string[9 - i] & 0x0F) * decMulti[i * 2 + 1];
-
         }
 #ifdef DEBUG
         Serial.println();
@@ -614,9 +589,6 @@ void startIcomAutotune() {
                 delay(10);
                 receiveRadioCom();
                 updateDisplay(position,WAITING_RADIO_SAFE_POWER_MESSAGE);
-
-
-
         }
         updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
         PREVIOUS_TRX_MODE = radio.trx_mode;
@@ -632,7 +604,6 @@ void startIcomAutotune() {
                 delay(10);
                 receiveRadioCom();
                 updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
-
         }
         updateDisplay(position,WAITING_RADIO_TXMIT_MESSAGE);
         icom_set_tx(TRANSMITTING);
@@ -670,9 +641,7 @@ void startIcomAutotune() {
                 delay(10);
                 receiveRadioCom();
                 updateDisplay(position,WAITING_RADIO_TXMIT_MESSAGE);
-
         }
-
 }
 //******************************************
 //
@@ -700,14 +669,12 @@ void stopIcomAutotune() {
         delay(10);
         receiveRadioCom();
         while(radio.trx_byte_pwr[0] !=  PREVIOUS_POWER[0] && radio.trx_byte_pwr[1] != PREVIOUS_POWER[1]) {
-
                 icom_set_pwr(PREVIOUS_POWER[0], PREVIOUS_POWER[1]);
                 delay(10);
                 getIcomRadioStatus();
                 delay(10);
                 receiveRadioCom();
                 updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
-
         }
         radioIcomSetMode(PREVIOUS_TRX_MODE, icom_filter);
         delay(10);
@@ -722,6 +689,5 @@ void stopIcomAutotune() {
                 receiveRadioCom();
                 updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
         }
-
 }
 #endif

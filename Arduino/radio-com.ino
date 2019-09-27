@@ -127,7 +127,7 @@ void getRadioPower() {
 //*******************************************
 int getRadioTxmitStatus() {
 #ifdef ICOM
-        return icom_getRadioTxmitStatus();//nalogRead(swrSensorPin) != 0
+        return icom_getRadioTxmitStatus();
 #endif
 #ifdef YEASU
         //TODO

@@ -5,7 +5,7 @@
 //****************************************************
 void menuNavigationCheck() {
         int switchState = digitalRead(switchPin);
-        // Si le screensaver est present, afficher le menu home
+        // If screesaver is present, clear it and display home
         if (CURRENT_MODE == HOME && screensaver == true) {
                 if (switchState != lastSwitchState) {
                         if (switchState == HIGH) {
@@ -16,7 +16,7 @@ void menuNavigationCheck() {
                 // save switch state for next comparison:
                 lastSwitchState = switchState;
         } else {
-                //Bouton Menu (Navigation)
+                // Menu button(Navigation)
                 if (switchState != lastSwitchState) {
                         if (switchState == HIGH) {
                                 if (CURRENT_MODE == HOME) {
@@ -58,7 +58,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                   HOME Page
                 //****************************************************
-                //Bouton Joystick Mode Home (Tests)
+                //Joystick button Mode Home (Tests)
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == HOME)
                 {
                         if (txmiting == false) {
@@ -70,7 +70,7 @@ void menuNavigationCheck() {
                         }
                         playShortBeep();
                 }
-                //Bouton A Mode Home ( Autotune this frequecy )
+                //A Button Mode Home ( Autotune this frequecy )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == HOME )
                 {
                         CURRENT_MODE == TUNING;
@@ -83,7 +83,7 @@ void menuNavigationCheck() {
                         playBeepBeep();
 
                 }
-                //Bouton B Mode Home ( Follow this frequency )
+                //B Button Mode Home ( Follow this frequency )
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == HOME)
                 {
 
@@ -111,7 +111,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                   SETTINGS Page
                 //****************************************************
-                //Bouton Joystick Mode Settings (Afficher le Mode Reset des positions par default des Bandes)
+                //Joystick Button Mode Settings (Afficher le Mode Reset des positions par default des Bandes)
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == SETTINGS)
                 {
                         CURRENT_MODE = RESETONE;
@@ -119,7 +119,7 @@ void menuNavigationCheck() {
                         playShortBeep();
                 }
 
-                //Bouton A Mode Settings ( Set Auto Tune Mode )
+                //A Button Mode Settings ( Set Auto Tune Mode )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == SETTINGS )
                 {
                         config.AUTO_TUNE = !config.AUTO_TUNE;
@@ -130,7 +130,7 @@ void menuNavigationCheck() {
                         startSaveConfig();
 
                 }
-                //Bouton B Mode Settings ( Set Auto Follow Mode)
+                //B Button Mode Settings ( Set Auto Follow Mode)
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == SETTINGS)
                 {
                         config.AUTO_FOLLOW = !config.AUTO_FOLLOW;
@@ -140,7 +140,7 @@ void menuNavigationCheck() {
                         startSaveConfig();
                         refreshTimer.check();
                 }
-                //Bouton C Mode Settings ( Calibration Mode )
+                //C Button Mode Settings ( Calibration Mode )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == SETTINGS)
                 {
                         playBeep();
@@ -159,7 +159,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                      GOTO Page 1
                 //****************************************************
-                //Bouton Joystick Mode GOTOONE ( Return to home - Zero)
+                //Joystick Button Mode GOTOONE ( Return to home - Zero)
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == GOTOONE)
                 {
                         playBeep();
@@ -171,7 +171,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
 
                 }
-                //Bouton A Mode GOTOONE ( Goto 10M position)
+                //A Button Mode GOTOONE ( Goto 10M position)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == GOTOONE )
                 {
       #ifdef ANTENNA_BAND_10M
@@ -188,7 +188,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton B Mode GOTOONE ( Goto 12M position )
+                //B Button Mode GOTOONE ( Goto 12M position )
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == GOTOONE)
                 {
       #ifdef ANTENNA_BAND_12M
@@ -205,7 +205,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton C Mode GOTOONE ( Goto 15M position )
+                //C Button Mode GOTOONE ( Goto 15M position )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == GOTOONE)
                 {
       #ifdef ANTENNA_BAND_15M
@@ -225,7 +225,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                      GOTO Page 2
                 //****************************************************
-                //Bouton Joystick Mode GOTOTWO ( Goto 17M position )
+                //Joystick Button Mode GOTOTWO ( Goto 17M position )
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == GOTOTWO)
                 {
 
@@ -243,7 +243,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton A Mode GOTOTWO ( Goto 20M position)
+                //A Button Mode GOTOTWO ( Goto 20M position)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == GOTOTWO )
                 {
       #ifdef ANTENNA_BAND_20M
@@ -260,7 +260,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton B Mode GOTOTWO ( Goto 30M position)
+                //B Button Mode GOTOTWO ( Goto 30M position)
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == GOTOTWO )
                 {
       #ifdef ANTENNA_BAND_30M
@@ -277,7 +277,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton C Mode GOTOTWO ( Goto 40M position)
+                //C Button Mode GOTOTWO ( Goto 40M position)
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == GOTOTWO )
                 {
       #ifdef ANTENNA_BAND_40M
@@ -297,7 +297,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                      GOTO Page 3
                 //****************************************************
-                //Bouton A Mode GOTOTHREE ( Goto 60M position)
+                //A Button Mode GOTOTHREE ( Goto 60M position)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == GOTOTHREE )
                 {
       #ifdef ANTENNA_BAND_60M
@@ -314,7 +314,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton B Mode GOTOTHREE ( Goto 80M position)
+                //B Button Mode GOTOTHREE ( Goto 80M position)
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == GOTOTHREE )
                 {
       #ifdef ANTENNA_BAND_80M
@@ -331,7 +331,7 @@ void menuNavigationCheck() {
                         returnToHomeMenu();
       #endif
                 }
-                //Bouton C Mode GOTOTHREE ( Goto 160M position)
+                //C Button Mode GOTOTHREE ( Goto 160M position)
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == GOTOTHREE )
                 {
       #ifdef ANTENNA_BAND_160M
@@ -351,7 +351,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //              Manual Coarse Tune Page
                 //****************************************************
-                //Bouton A Mode Coarse (Goto Fine Tune Menu)
+                //A Button Mode Coarse (Goto Fine Tune Menu)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == COARSE_TUNE )
                 {
                         CURRENT_MODE = FINE_TUNE;
@@ -360,7 +360,7 @@ void menuNavigationCheck() {
                         playShortBeep();
                         resetScreenSaver();
                 }
-                //Bouton B Mode Coarse (AutoTune current Frenquency and save)
+                //B Button Mode Coarse (AutoTune current Frenquency and save)
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == COARSE_TUNE )
                 {
                         if (config.AUTO_FOLLOW == false) {
@@ -374,7 +374,7 @@ void menuNavigationCheck() {
                         playBeepBeep();
 
                 }
-                //Bouton C Mode Coarse (Save current Frequency position)
+                //C Button Mode Coarse (Save current Frequency position)
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == COARSE_TUNE )
                 {
                         saveCurrentMemory();
@@ -386,7 +386,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //              Manual Fine Tune Page
                 //****************************************************
-                //Bouton A Mode Fine (Goto Coarse Tune Menu)
+                //A Button Mode Fine (Goto Coarse Tune Menu)
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == FINE_TUNE )
                 {
                         CURRENT_MODE = COARSE_TUNE;
@@ -396,7 +396,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
                 }
 
-                //Bouton B Mode Fine (AutoTune current Frenquency and save)
+                //B Button Mode Fine (AutoTune current Frenquency and save)
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == FINE_TUNE )
                 {
                         if (config.AUTO_FOLLOW == false) {
@@ -410,7 +410,7 @@ void menuNavigationCheck() {
                         playBeepBeep();
                 }
 
-                //Bouton C Mode Fine (Save current Frequency position)
+                //C Button Mode Fine (Save current Frequency position)
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == FINE_TUNE )
                 {
                         saveCurrentMemory();
@@ -422,7 +422,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                     Reset Page One
                 //****************************************************
-                //Bouton Joystick Mode RESETONE ( Return to home - Zero)
+                //Joystick Button Mode RESETONE ( Return to home - Zero)
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == RESETONE)
                 {
 
@@ -443,7 +443,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton A Mode RESETONE ( Reset 10M )
+                //A Button Mode RESETONE ( Reset 10M )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == RESETONE)
                 {
       #ifdef ANTENNA_BAND_10M
@@ -454,7 +454,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton B Mode RESETONE ( Reset 12M )
+                //B Button Mode RESETONE ( Reset 12M )
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == RESETONE)
                 {
       #ifdef ANTENNA_BAND_12M
@@ -465,7 +465,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton C Mode RESETONE ( Reset 15M )
+                //C Button Mode RESETONE ( Reset 15M )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == RESETONE)
                 {
       #ifdef ANTENNA_BAND_15M
@@ -479,7 +479,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                     Reset Page Two
                 //****************************************************
-                //Bouton Joystick Mode RESETTWO (  Reset 17M )
+                //Joystick Button Mode RESETTWO (  Reset 17M )
                 while (digitalRead(buttonJoystickPin) == LOW && CURRENT_MODE == RESETTWO)
                 {
 
@@ -492,7 +492,7 @@ void menuNavigationCheck() {
       #endif
 
                 }
-                //Bouton A Mode RESETTWO ( Reset 20M )
+                //A Button Mode RESETTWO ( Reset 20M )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == RESETTWO)
                 {
       #ifdef ANTENNA_BAND_20M
@@ -503,7 +503,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton B Mode RESETTWO ( Reset 30M )
+                //B Button Mode RESETTWO ( Reset 30M )
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == RESETTWO)
                 {
       #ifdef ANTENNA_BAND_30M
@@ -514,7 +514,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton C Mode RESETTWO ( Reset 40M )
+                //C Button Mode RESETTWO ( Reset 40M )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == RESETTWO)
                 {
       #ifdef ANTENNA_BAND_40M
@@ -528,7 +528,7 @@ void menuNavigationCheck() {
                 //****************************************************
                 //                 Reset Page Three
                 //****************************************************
-                //Bouton A Mode RESETTHREE ( Reset 60M )
+                //A Button Mode RESETTHREE ( Reset 60M )
                 while (digitalRead(buttonAPin) == LOW && CURRENT_MODE == RESETTHREE)
                 {
       #ifdef ANTENNA_BAND_60M
@@ -539,7 +539,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton B Mode RESETTHREE ( Reset 80M )
+                //B Button Mode RESETTHREE ( Reset 80M )
                 while (digitalRead(buttonBPin) == LOW && CURRENT_MODE == RESETTHREE)
                 {
       #ifdef ANTENNA_BAND_80M
@@ -550,7 +550,7 @@ void menuNavigationCheck() {
                         resetScreenSaver();
       #endif
                 }
-                //Bouton C Mode RESETTHREE ( Reset 160M )
+                //C Button Mode RESETTHREE ( Reset 160M )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == RESETTHREE)
                 {
       #ifdef ANTENNA_BAND_160M

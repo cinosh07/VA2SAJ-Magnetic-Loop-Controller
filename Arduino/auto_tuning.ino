@@ -11,26 +11,26 @@ void startAutoTune(int type) {
                         tuningProcess(getMemoryPosition(config.CURRENT_FRQ));
 
                 } else if (TUNED_STATUS == STATUS_ERROR) {
-                        //TODO STATUS_ERROR
+                        //TODO TUNING STATUS_ERROR
                 } else if (TUNED_STATUS == OK) {
                         tuningProcess(config.CURRENT_POSITION);
                 }
 
         } else if (type == FOLLOW_TYPE) {
-                //TODO FOLLOW_TYPE
+                //TODO TUNING FOLLOW_TYPE
         } else if (type == AUTO_TYPE) {
-                //TODO AUTO_TYPE
+                //TODO TUNING AUTO_TYPE
         }
 }
 //*******************************************************************************
 //
-// Verification si le step motor doit faire un autotune de sa nouvelle frequence
+//     Check if capacitor stepper motor need to start an autotune process
 //
 //*******************************************************************************
 void checkToAutotune() {
         if (config.AUTO_TUNE == true) {
                 //TODO startAutoTune(type) if neededggg
-                //TODO Verifier si la frequence en cours a une memoire enregistrer
+                //TODO Check if current frequency has saved memory
         } else if (toAutotuned) {
                 //toAutotuned
         }

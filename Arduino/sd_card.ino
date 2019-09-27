@@ -10,7 +10,6 @@ void initSDCard() {
         digitalWrite( networkShieldCSPin, HIGH  );
         pinMode(sdCardCSPin, OUTPUT);
         digitalWrite(sdCardCSPin, HIGH);
-
         if (!SD.begin(sdCardCSPin)) {
                 playAlarmNOSD();;
                 sdCardPresent = false;
@@ -21,7 +20,6 @@ void initSDCard() {
         } else {
                 sdCardPresent = true;
         }
-
         loadConfiguration(filename, config);
 }
 //******************************************************

@@ -1,6 +1,6 @@
 //*********************************
 //
-// Initialisation de l Affichage LCD
+//   LCD Display initialization
 //
 //*********************************
 void initDisplay() {
@@ -10,7 +10,7 @@ void initDisplay() {
 }
 //*********************************
 //
-//     Update Affichage LCD
+//      Update LCD Display
 //
 //*********************************
 void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
@@ -20,7 +20,6 @@ void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
                 resetDisplay();
                 PREVIOUS_MODE = CURRENT_MODE;
                 refreshDisplay(1);
-
                 if (CURRENT_MODE == HOME) {
                         //Display Home menu
                         displayHome();
@@ -67,7 +66,6 @@ void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
                         displayReturnToHome();
                 }
         } else {
-
                 if (CURRENT_MODE == TUNING) {
                         displayTuning(ORIGIN_POSITION, MESSAGE);
                 }
@@ -85,7 +83,7 @@ void updateDisplay( uint32_t ORIGIN_POSITION, String MESSAGE )
 }
 //*********************************
 //
-// Remisse a zero de l'affichage
+//     Reset Display content
 //
 //*********************************
 void resetDisplay() {
@@ -97,7 +95,7 @@ void resetDisplay() {
 }
 //*********************************
 //
-// Rafrashissement de l'affichage
+//    Refresh display content
 //
 //*********************************
 void refreshDisplay(int size) {
@@ -108,11 +106,10 @@ void refreshDisplay(int size) {
 }
 //*********************************
 //
-//     Affichage du menu home
+//       Display Home menu
 //
 //*********************************
 void displayHome() {
-
         display.println( MENU_STRING[CURRENT_MODE] );
         display.setTextSize( 2 );
         display.setTextColor( ST7735_YELLOW, ST7735_BLACK );
@@ -151,18 +148,18 @@ void displayHome() {
 }
 //*********************************************
 //
-// Affichage Status Icons Grid - TOP ou BOTTOM
+// Display Status Icons Grid - TOP or BOTTOM
 //
 //*********************************************
 void displaySettingsGrid(int position) {
         int firstLine;
         int secondLine;
         if (position == GRID_BOTTOM) {
-                //Affichage de grille au bas de l'ecran
+                //Display icons grid at the bottom
                 firstLine = 90;
                 secondLine = 110;
         } else if (position == GRID_TOP) {
-                //Affichage de grille au haut de l'ecran
+                //Display icons grid at the top
                 firstLine = 20;
                 secondLine = 40;
         }
@@ -251,7 +248,7 @@ void displaySettingsGrid(int position) {
 }
 //*********************************
 //
-//   Affichage de la bande
+//    Display current band
 //
 //*********************************
 void displayBand() {
@@ -279,7 +276,7 @@ void displayBand() {
 }
 //*********************************
 //
-//   Affichage du menu settings
+//     Display Settings Menu
 //
 //*********************************
 void displaySettings() {
@@ -301,7 +298,7 @@ void displaySettings() {
 }
 //*********************************
 //
-// Affichage du menu coarse tune
+//   Display coarse tune Menu
 //
 //*********************************
 void displayCoarseTune() {
@@ -309,9 +306,6 @@ void displayCoarseTune() {
         display.print( MENU_STRING[CURRENT_MODE]  );
         display.setTextSize( 2 );
         display.setTextColor( ST7735_WHITE, ST7735_BLACK );
-        //display.setCursor( 4, 20 );
-        //display.print( "SWR:" );
-        //displaySWR();
         display.setCursor( 4, 32 );
         display.print( " P:" );
         displayCurrentPosition(config.CURRENT_POSITION);
@@ -327,7 +321,7 @@ void displayCoarseTune() {
 }
 //*********************************
 //
-// Affichage du menu fine tune
+//    Display fine tune Menu
 //
 //*********************************
 void displayFineTune() {
@@ -335,9 +329,6 @@ void displayFineTune() {
         display.print( MENU_STRING[CURRENT_MODE]  );
         display.setTextSize( 2 );
         display.setTextColor( ST7735_WHITE, ST7735_BLACK );
-        //display.setCursor( 4, 20 );
-        //display.print( "SWR:" );
-        //displaySWR();
         display.setCursor( 4, 32 );
         display.print( "P:" );
         displayCurrentPosition(config.CURRENT_POSITION);
@@ -353,7 +344,7 @@ void displayFineTune() {
 }
 //*********************************
 //
-//        Affichage SWR
+//          Display SWR
 //
 //*********************************
 void displaySWR() {
@@ -385,11 +376,10 @@ void displaySWR() {
         display.println( radio.trx_swr );
 #endif
         checkSWRAlarm(limitReached);
-
 }
 //*************************************
 //
-// Affichage transmission en cours...
+//     Display in tranmission ...
 //
 //*************************************
 void displayTxmiting() {
@@ -408,7 +398,7 @@ void displayTxmiting() {
 }
 //*********************************
 //
-//    Affichage recherche radio
+//     Display search radio
 //
 //*********************************
 void displaySearchingRadio() {
@@ -487,8 +477,6 @@ void displayTuning(uint32_t ORIGIN_POSITION, String MESSAGE) {
                 display.setCursor( 4, 108 );
                 display.println(  EMPTY_SECOND_LINE_MESSAGE );
         }
-
-
 }
 //*********************************
 //
@@ -529,8 +517,6 @@ void displayCalibration(uint32_t ORIGIN_POSITION, String MESSAGE) {
                 display.setCursor( 4, 108 );
                 display.println(  EMPTY_SECOND_LINE_MESSAGE );
         }
-
-
 }
 //*********************************
 //
@@ -562,7 +548,7 @@ void displayLoadingNetwork() {
 }
 //*********************************
 //
-//    Affichage Du menu Goto 1
+//      Display menu Goto 1
 //
 //*********************************
 void displayGOTOONE() {
@@ -596,7 +582,7 @@ void displayGOTOONE() {
 }
 //*********************************
 //
-//    Affichage Du menu Goto 2
+//      Display menu Goto 2
 //
 //*********************************
 void displayGOTOTWO() {
@@ -635,7 +621,7 @@ void displayGOTOTWO() {
 }
 //*********************************
 //
-//    Affichage Du menu Goto 3
+//      Display menu Goto 3
 //
 //*********************************
 void displayGOTOTHREE() {
@@ -667,7 +653,7 @@ void displayGOTOTHREE() {
 }
 //*********************************
 //
-//   Affichage Du menu Reset 1
+//     Display menu Reset 1
 //
 //*********************************
 void displayRESETONE() {
@@ -703,7 +689,7 @@ void displayRESETONE() {
 }
 //*********************************
 //
-//   Affichage Du menu Reset 2
+//     Display menu Reset 2
 //
 //*********************************
 void displayRESETTWO() {
@@ -743,7 +729,7 @@ void displayRESETTWO() {
 }
 //*********************************
 //
-//   Affichage Du menu Reset 3
+//     Display menu Reset 3
 //
 //*********************************
 void displayRESETTHREE() {
@@ -777,7 +763,7 @@ void displayRESETTHREE() {
 }
 //*********************************
 //
-// Affichage de la Freq. en cours
+//   Display current frequency
 //
 //*********************************
 void display_frq(int32_t frq)
@@ -824,11 +810,11 @@ void display_frq(int32_t frq)
         display.println( " MHz" );
         display.setTextSize( 2 );
 }
-//**********************************************
+//*******************************************************
 //
-//   Affichage de la position du step motor
+//   Display current capacitor stepper motor position
 //
-//**********************************************
+//*******************************************************
 void displayCurrentPosition(uint32_t tempPos) {
 
         String sign = " ";
@@ -862,7 +848,7 @@ void displayCurrentPosition(uint32_t tempPos) {
 }
 //*********************************
 //
-//         Screensaver
+//      Display Screensaver
 //
 //*********************************
 void RunScreenSaver()

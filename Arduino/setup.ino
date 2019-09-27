@@ -14,7 +14,6 @@ void setup() {
         }
 
         playBeep();
-        //analogReference(EXTERNAL);
         display.initR(INITR_BLACKTAB); // initialize a ST7735S chip, black tab
         display.fillScreen(ST7735_BLACK);
         display.setRotation(display.getRotation() + 1);

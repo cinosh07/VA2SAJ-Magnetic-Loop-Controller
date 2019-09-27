@@ -1,6 +1,6 @@
 //*********************************
 //
-//     Axes JoyStick
+//       Read JoyStick Axis
 //
 //*********************************
 int readAxis(int thisAxis) {
@@ -21,7 +21,7 @@ int readAxis(int thisAxis) {
 }
 //*********************************
 //
-//Actualisation du range du joystick
+//     Refresh joystick range
 //
 //*********************************
 void refreshJoystickRange() {

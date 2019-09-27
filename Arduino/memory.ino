@@ -136,7 +136,7 @@ int checkIfMemoryExist(Memory mem[], uint32_t frequency) {
 }
 //********************************************************************************
 //
-//      Get Memory Position
+//                             Get Memory Position
 //
 //********************************************************************************
 uint32_t getMemoryPosition( uint32_t frequency) {

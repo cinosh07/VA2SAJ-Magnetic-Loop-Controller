@@ -3,7 +3,7 @@
 
    Created 30 March. 2019
    Updated september 26th 2019
-   by Carl Tremblay - VA2SAJ
+   by Carl Tremblay - VA2SAJ AKA cinosh07
 
    code and circuitry inspired from
    https://create.arduino.cc/editor/JMardling/67243a05-af85-4b7b-832c-b67a56f8b77c/preview
@@ -29,6 +29,8 @@
 #define RADIO_MODEL  " ICOM IC-718"
 #define VERSION  "V0.90"
 
+// IMPORTANT due to lack of memory and speed
+// NETWORK NOT COMPATIBLE WITCH MEGA 2560 - USE ARDUINO DUE 32bit platform instead
 //#define NETWORK 1
 //#define CLOUD_SAVE 1
 //#define DEBUG 1
@@ -171,31 +173,30 @@ struct Config {
 boolean configLoaded = false;
 const char *filename = "/config.txt";  // <- We use .txt instead of .json cause it is not supported by SD library.
 Config config;
-//*******************************************************
+//*************************************************************
 //
-//  Definition de la memoire des positions de frequences
+//  Memory frequency capacitor stepper position definitions
 //
-//*******************************************************
+//*************************************************************
 //Number of memory slot per band
 #define MEMORY_MAX_SIZE 25
-//Structure d'un block memoire
+//Memory Object structure
 struct Memory {
         uint32_t FREQUENCY;
         uint32_t POSITION;
 };
-//Fichier de sauvegarde de la memoire par bande
-const char *memoryTeMFile = "/mem10.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryTwelMFile = "/mem12.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryFiMFile = "/mem15.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-const char *memorySeMFile = "/mem17.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryTwMFile = "/mem20.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryThMFile = "/mem30.txt";  // <- We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryFoMFile = "/mem40.txt";  // <- We use .txt instead of .json cause it is not supported by SD library.
-const char *memorySiMFile = "/mem60.txt";  // <- We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryHeMFile = "/mem80.txt";  // <- We use .txt instead of .json cause it is not supported by SD library.
-const char *memoryHuSiMFile = "/mem160.txt";  // <-  We use .txt instead of .json cause it is not supported by SD library.
-//Memory Array contenant les listes de positions de frequences
-
+//Memory SD Card json files <-  We use .txt instead of .json cause it is not supported by SD library.
+const char *memoryTeMFile = "/mem10.txt";
+const char *memoryTwelMFile = "/mem12.txt";
+const char *memoryFiMFile = "/mem15.txt";
+const char *memorySeMFile = "/mem17.txt";
+const char *memoryTwMFile = "/mem20.txt";
+const char *memoryThMFile = "/mem30.txt";
+const char *memoryFoMFile = "/mem40.txt";
+const char *memorySiMFile = "/mem60.txt";
+const char *memoryHeMFile = "/mem80.txt";
+const char *memoryHuSiMFile = "/mem160.txt";
+//Memory Array
 #ifdef ANTENNA_BAND_10M
 Memory memory10m[MEMORY_MAX_SIZE];
 #else
@@ -274,7 +275,7 @@ int toTunedPositionTimeout = 3;
 //           Autotuning
 //
 //***************************************
-// Definition des type d'auto tuning
+// Autotuning type definitions
 #define CURRENT_POSITION_TYPE 1
 #define FOLLOW_TYPE 2
 #define AUTO_TYPE 3
@@ -300,7 +301,7 @@ const int tuningThreshold[10] = {15, 15, 15, 15, 15, 15, 15, 15, 18, 18}; //10m,
 const int tuningThresholdFine[10] = {5, 5, 5, 5, 5, 5, 5, 5, 9, 9}; //10m,12m,15m,17m,20m,30m,40m,60m,80m,160m
 uint32_t goalSearchSteps = 0;
 
-//TODO SWR threshold to not reach while transmit or tune
+//SWR threshold to not reach while transmit or tune
 const int swrThreshod[10] = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50}; //10m,12m,15m,17m,20m,30m,40m,60m,80m,160m
 const int swrThreshodFine[10] = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5}; //10m,12m,15m,17m,20m,30m,40m,60m,80m,160m
 boolean swrAlarm = true;
@@ -883,7 +884,7 @@ void saveMemory() {
 }
 //**********************************
 //
-//    Definitions des icones
+//        Icons Definition
 //
 //  Tool to generate bitmap icons
 //    http://dotmatrixtool.com/
@@ -891,7 +892,7 @@ void saveMemory() {
 //16px by 16px, row major, big endian.
 //
 //**********************************
-//  16x16 Diskette Icon
+//  16x16 Disk Icon
 static const uint8_t PROGMEM icon_disk[] =
 {
         0xff, 0xf8, 0x88, 0x14, 0x88, 0xd2, 0x88, 0xd1, 0x88, 0x11, 0x8f, 0xf1, 0x80, 0x01, 0x80, 0x01, 0x80, 0x01, 0x80, 0x01, 0xbf, 0xfd, 0xa0, 0x05, 0xa0, 0x05, 0xa0, 0x05, 0xa0, 0x05, 0xff, 0xff

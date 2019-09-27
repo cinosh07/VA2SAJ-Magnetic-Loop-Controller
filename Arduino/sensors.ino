@@ -43,11 +43,11 @@ void returnToHomeLimitSwitch() {
                 gotoPositionLock = false;
         }
 }
-//************************************************
+//***************************************************************************
 //
-//   Echantillonnage de la valeur du SWR Sensor
+//    Sampling an average swr sensor value from numSamples(int) readings
 //
-//************************************************
+//***************************************************************************
 uint32_t swrAverage(int numSamples) {
 
         //returns averaged value of numsamples swrValue samples
