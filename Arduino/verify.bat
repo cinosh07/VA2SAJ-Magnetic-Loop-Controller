@@ -1,0 +1,1 @@
+"C:\Users\Carl\Google Drive\HAM Radio\mag loop\arduino-cli\arduino-cli.exe" compile -p COM12 --fqbn arduino:avr:mega "C:\Users\Carl\Documents\VA2SAJ-Magnetic-Loop-Controller\Arduino\Mag_Loop_Control_V3.ino"
