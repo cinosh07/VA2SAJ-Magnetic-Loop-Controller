@@ -16,7 +16,8 @@
 -Yaesu Radio Cat Control compatible<br>
 -Kenwood Radio Cat Control compatible<br>
 -Generic Radio Cat Control compatible<br>
--Ham Radio Deluxe and Rig Control API Server Compatible (Arduino Due only) This will allow the tuner to control any radio, regardless of the brand or communication protocol. Allowing to switch radio seamlessly for multiple radios/antennas environment with the tuner.<br>
+-Auto Multiple Antennas Switching Support<br>
+-Ham Radio Deluxe and Rig Control API Server Compatible. (Arduino Due only) This will allow the tuner to control any radio, regardless of the brand or communication protocol. Allowing to switch radio seamlessly for multiple radios/antennas environment with the tuner.<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
 -Cloud manageable (Arduino Due only)<br>
 -App manageable (Arduino Due only)<br>
