@@ -238,6 +238,18 @@ void getRadioBand() {
 void setRadioMode(uint8_t modeid) {
 #ifdef ICOM
         radioIcomSetMode(modeid, MODE_FILTER_DEFAULT);
+        delay(10);
+        getRadioStatus();
+        delay(10);
+        receiveRadioCom();
+        while (radio.trx_mode != MODE_TYPE_RTTY) {
+                radioIcomSetMode(modeid, MODE_FILTER_DEFAULT);
+                delay(10);
+                getRadioStatus();
+                delay(10);
+                receiveRadioCom();
+                updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
+        }
 #endif
 #ifdef YEASU
         //TODO

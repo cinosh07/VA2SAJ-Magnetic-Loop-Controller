@@ -36,22 +36,6 @@ void calibrate() {
         setRadioFrequency(frequenciesArray[frequencyToCalibrateID]);
         PREVIOUS_TRX_MODE = radio.trx_mode;
         setRadioMode(MODE_TYPE_RTTY);
-        delay(10);
-        getRadioStatus();
-        delay(10);
-        receiveRadioCom();
-        while (radio.trx_mode != MODE_TYPE_RTTY) {
-                setRadioMode(MODE_TYPE_RTTY);
-                delay(10);
-                getRadioStatus();
-                delay(10);
-                receiveRadioCom();
-                updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
-        }
-
-
-
-
 
         while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH)
         {
