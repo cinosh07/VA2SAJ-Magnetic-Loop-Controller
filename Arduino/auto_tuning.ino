@@ -29,15 +29,12 @@ void startAutoTune(int type) {
 
         if (type == CURRENT_POSITION_TYPE) {
                 if (TUNED_STATUS == WRONG_POSITION) {
-
                         tuningProcess(getMemoryPosition(config.CURRENT_FRQ));
-
                 } else if (TUNED_STATUS == STATUS_ERROR) {
                         //TODO TUNING STATUS_ERROR
                 } else if (TUNED_STATUS == OK) {
                         tuningProcess(config.CURRENT_POSITION);
                 }
-
         } else if (type == FOLLOW_TYPE) {
                 //TODO TUNING FOLLOW_TYPE
         } else if (type == AUTO_TYPE) {

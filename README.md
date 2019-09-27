@@ -11,12 +11,12 @@
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
 -Icom Radio Cat Control compatible<br>
--Ham Radio Deluxe Friendly<br>
+-Ham Radio Deluxe Friendly<br><br>
 **Futur Development Features:**<br>
 -Yaesu Radio Cat Control compatible<br>
 -Kenwood Radio Cat Control compatible<br>
 -Generic Radio Cat Control compatible<br>
--Ham Radio Deluxe Control Server Compatible (Arduino Due only)<br>
+-Ham Radio Deluxe Control and Rig Control Server Compatible (Arduino Due only) This will allow the tuner to control any radio, regardless of the brand or communication protocol. Allowing to switch radio seamlessly for multiple radios/antennas environment with the tuner.<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
 -Cloud manageable (Arduino Due only)<br>
 -App manageable (Arduino Due only)<br>
