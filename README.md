@@ -4,6 +4,7 @@
 ![DIY Magnetic Lopp Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
 
 **Features:**<br>
+-Input voltage 12V-36V<br>
 -Auto tuning<br>
 -Auto follow radio frequency to saved memories<br>
 -25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on SD card<br>
@@ -12,7 +13,6 @@
 -Auto Calibration<br>
 -Icom Radio Cat Control compatible<br>
 -Ham Radio Deluxe / Rig Control Friendly<br><br>
--Input voltage 12V-36V<br><br>
 **Future Development Features:**<br>
 -[Yaesu Radio Cat Control compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/1)<br>
 -[Kenwood Radio Cat Control compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/2)<br>
