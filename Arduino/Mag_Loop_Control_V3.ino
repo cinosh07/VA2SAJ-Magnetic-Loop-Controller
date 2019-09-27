@@ -188,6 +188,11 @@ Config config;
 //  Memory frequency capacitor stepper position definitions
 //
 //*************************************************************
+//This the default frequency Memory for each band. The default is assigned to position 0 of each memory arrays.
+//This also help with the calibrationFrequencies values to estimate capacitor stepper position when no saved memories is availlable
+//When availlable we use International Beacon frequency as default memories
+//10m,12m,15m,17m,20m,30m,40m,60m,80m,160m
+uint32_t defaultMemories[10] = {28200000, 24930000, 21150000, 18110000, 14100000, 10125000, 7350000, 5403500, 3950000, 1990000};
 //Number of memory slot per band
 #define MEMORY_MAX_SIZE 25
 //Memory Object structure
@@ -326,6 +331,18 @@ String WAITING_RADIO_SAFE_POWER_MESSAGE = "Wait Radio   |Safe Power  ";
 String WAITING_RADIO_MODE_MESSAGE = "Wait Radio   |RTTY MODE   ";
 String WAITING_RADIO_TXMIT_MESSAGE = "Wait Radio   |Transmission";
 String EMPTY_SECOND_LINE_MESSAGE = "            ";
+//***************************************
+//
+//           Auto Calibration
+//
+//***************************************
+String STARTING_CALIBRATION_MESSAGE = "Calibration      ";
+
+//This is center frequency of each band 10m,12m,15m,17m,20m,30m,40m,60m,80m,160m
+//(Those frequencies correspont to the stepper position of each band saved in the config file and variable. i.e config.POS20M, config.POS12M, ... )
+// TODO Crete different values per country band plan allocation
+uint32_t calibrationFrequencies[10] = {28800000, 24895000, 21225000, 18118000, 14175000, 10125000, 7150000, 5350000, 3750000, 1900000};
+
 //***************************************
 //
 //   Definition des menus et Textes
@@ -685,62 +702,112 @@ void loadMemory(int BAND_MEMORY) {
         if (BAND_MEMORY == BAND_10M) {
                 memory10Size = doc["memorySize10m"];
                 for (int x = 0; x < memory10Size; x++) {
-                        memory10m[x].FREQUENCY = doc["memory10m"][String(x)]["FREQUENCY"];
-                        memory10m[x].POSITION = doc["memory10m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory10m[x].FREQUENCY = defaultMemories[BAND_10M];
+                                memory10m[x].POSITION = doc["memory10m"][String(x)]["POSITION"];
+                        } else {
+                                memory10m[x].FREQUENCY = doc["memory10m"][String(x)]["FREQUENCY"];
+                                memory10m[x].POSITION = doc["memory10m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_12M) {
                 memory12Size = doc["memorySize12m"];
                 for (int x = 0; x < memory12Size; x++) {
-                        memory12m[x].FREQUENCY = doc["memory12m"][String(x)]["FREQUENCY"];
-                        memory12m[x].POSITION = doc["memory12m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory12m[x].FREQUENCY = defaultMemories[BAND_12M];
+                                memory12m[x].POSITION = doc["memory12m"][String(x)]["POSITION"];
+                        } else {
+                                memory12m[x].FREQUENCY = doc["memory12m"][String(x)]["FREQUENCY"];
+                                memory12m[x].POSITION = doc["memory12m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_15M) {
                 memory15Size = doc["memorySize15m"];
                 for (int x = 0; x < memory15Size; x++) {
-                        memory15m[x].FREQUENCY = doc["memory15m"][String(x)]["FREQUENCY"];
-                        memory15m[x].POSITION = doc["memory15m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory15m[x].FREQUENCY = defaultMemories[BAND_15M];
+                                memory15m[x].POSITION = doc["memory15m"][String(x)]["POSITION"];
+                        } else {
+                                memory15m[x].FREQUENCY = doc["memory15m"][String(x)]["FREQUENCY"];
+                                memory15m[x].POSITION = doc["memory15m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_17M) {
                 memory17Size = doc["memorySize17m"];
                 for (int x = 0; x < memory17Size; x++) {
-                        memory17m[x].FREQUENCY = doc["memory17m"][String(x)]["FREQUENCY"];
-                        memory17m[x].POSITION = doc["memory17m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory17m[x].FREQUENCY = defaultMemories[BAND_17M];
+                                memory17m[x].POSITION = doc["memory17m"][String(x)]["POSITION"];
+                        } else {
+                                memory17m[x].FREQUENCY = doc["memory17m"][String(x)]["FREQUENCY"];
+                                memory17m[x].POSITION = doc["memory17m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_20M) {
                 memory20Size = doc["memorySize20m"];
                 for (int x = 0; x < memory20Size; x++) {
-                        memory20m[x].FREQUENCY = doc["memory20m"][String(x)]["FREQUENCY"];
-                        memory20m[x].POSITION = doc["memory20m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory20m[x].FREQUENCY = defaultMemories[BAND_20M];
+                                memory20m[x].POSITION = doc["memory20m"][String(x)]["POSITION"];
+                        } else {
+                                memory20m[x].FREQUENCY = doc["memory20m"][String(x)]["FREQUENCY"];
+                                memory20m[x].POSITION = doc["memory20m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_30M) {
                 memory30Size = doc["memorySize30m"];
                 for (int x = 0; x < memory30Size; x++) {
-                        memory30m[x].FREQUENCY = doc["memory30m"][String(x)]["FREQUENCY"];
-                        memory30m[x].POSITION = doc["memory30m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory30m[x].FREQUENCY = defaultMemories[BAND_30M];
+                                memory30m[x].POSITION = doc["memory30m"][String(x)]["POSITION"];
+                        } else {
+                                memory30m[x].FREQUENCY = doc["memory30m"][String(x)]["FREQUENCY"];
+                                memory30m[x].POSITION = doc["memory30m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_40M) {
                 memory40Size = doc["memorySize40m"];
                 for (int x = 0; x < memory40Size; x++) {
-                        memory40m[x].FREQUENCY = doc["memory40m"][String(x)]["FREQUENCY"];
-                        memory40m[x].POSITION = doc["memory40m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory40m[x].FREQUENCY = defaultMemories[BAND_40M];
+                                memory40m[x].POSITION = doc["memory40m"][String(x)]["POSITION"];
+                        } else {
+                                memory40m[x].FREQUENCY = doc["memory40m"][String(x)]["FREQUENCY"];
+                                memory40m[x].POSITION = doc["memory40m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_60M) {
                 memory60Size = doc["memorySize60m"];
                 for (int x = 0; x < memory60Size; x++) {
-                        memory60m[x].FREQUENCY = doc["memory60m"][String(x)]["FREQUENCY"];
-                        memory60m[x].POSITION = doc["memory60m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory60m[x].FREQUENCY = defaultMemories[BAND_60M];
+                                memory60m[x].POSITION = doc["memory60m"][String(x)]["POSITION"];
+                        } else {
+                                memory60m[x].FREQUENCY = doc["memory60m"][String(x)]["FREQUENCY"];
+                                memory60m[x].POSITION = doc["memory60m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_80M) {
                 memory80Size = doc["memorySize80m"];
                 for (int x = 0; x < memory80Size; x++) {
-                        memory80m[x].FREQUENCY = doc["memory80m"][String(x)]["FREQUENCY"];
-                        memory80m[x].POSITION = doc["memory80m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory80m[x].FREQUENCY = defaultMemories[BAND_80M];
+                                memory80m[x].POSITION = doc["memory80m"][String(x)]["POSITION"];
+                        } else {
+                                memory80m[x].FREQUENCY = doc["memory80m"][String(x)]["FREQUENCY"];
+                                memory80m[x].POSITION = doc["memory80m"][String(x)]["POSITION"];
+                        }
                 }
         } else if (BAND_MEMORY == BAND_160M) {
                 memory160Size = doc["memorySize160m"];
                 for (int x = 0; x < memory160Size; x++) {
-                        memory160m[x].FREQUENCY = doc["memory160m"][String(x)]["FREQUENCY"];
-                        memory160m[x].POSITION = doc["memory160m"][String(x)]["POSITION"];
+                        if (x==0) {
+                                memory160m[x].FREQUENCY = defaultMemories[BAND_160M];
+                                memory160m[x].POSITION = doc["memory160m"][String(x)]["POSITION"];
+                        } else {
+                                memory160m[x].FREQUENCY = doc["memory160m"][String(x)]["FREQUENCY"];
+                                memory160m[x].POSITION = doc["memory160m"][String(x)]["POSITION"];
+                        }
                 }
         }
         // Close the file
@@ -819,62 +886,112 @@ void saveMemory() {
         if (CURRENT_BAND == BAND_10M) {
                 doc["memorySize10m"] = memory10Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory10m"][String(x)]["FREQUENCY"] = memory10m[x].FREQUENCY;
-                        doc["memory10m"][String(x)]["POSITION"] = memory10m[x].POSITION;
+                        if (x==0) {
+                                doc["memory10m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_10M];
+                                doc["memory10m"][String(x)]["POSITION"] = memory10m[x].POSITION;
+                        } else {
+                                doc["memory10m"][String(x)]["FREQUENCY"] = memory10m[x].FREQUENCY;
+                                doc["memory10m"][String(x)]["POSITION"] = memory10m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_12M) {
                 doc["memorySize12m"] = memory12Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory12m"][String(x)]["FREQUENCY"] = memory12m[x].FREQUENCY;
-                        doc["memory12m"][String(x)]["POSITION"] = memory12m[x].POSITION;
+                        if (x==0) {
+                                doc["memory12m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_12M];
+                                doc["memory12m"][String(x)]["POSITION"] = memory12m[x].POSITION;
+                        } else {
+                                doc["memory12m"][String(x)]["FREQUENCY"] = memory12m[x].FREQUENCY;
+                                doc["memory12m"][String(x)]["POSITION"] = memory12m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_15M) {
                 doc["memorySize15m"] = memory15Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory15m"][String(x)]["FREQUENCY"] = memory15m[x].FREQUENCY;
-                        doc["memory15m"][String(x)]["POSITION"] = memory15m[x].POSITION;
+                        if (x==0) {
+                                doc["memory15m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_15M];
+                                doc["memory15m"][String(x)]["POSITION"] = memory15m[x].POSITION;
+                        } else {
+                                doc["memory15m"][String(x)]["FREQUENCY"] = memory15m[x].FREQUENCY;
+                                doc["memory15m"][String(x)]["POSITION"] = memory15m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_17M) {
                 doc["memorySize17m"] = memory17Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory17m"][String(x)]["FREQUENCY"] = memory17m[x].FREQUENCY;
-                        doc["memory17m"][String(x)]["POSITION"] = memory17m[x].POSITION;
+                        if (x==0) {
+                                doc["memory17m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_17M];
+                                doc["memory17m"][String(x)]["POSITION"] = memory17m[x].POSITION;
+                        } else {
+                                doc["memory17m"][String(x)]["FREQUENCY"] = memory17m[x].FREQUENCY;
+                                doc["memory17m"][String(x)]["POSITION"] = memory17m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_20M) {
                 doc["memorySize20m"] = memory20Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory20m"][String(x)]["FREQUENCY"] = memory20m[x].FREQUENCY;
-                        doc["memory20m"][String(x)]["POSITION"] = memory20m[x].POSITION;
+                        if (x==0) {
+                                doc["memory20m"][String(x)]["FREQUENCY"]  = defaultMemories[BAND_20M];
+                                doc["memory20m"][String(x)]["POSITION"] = memory20m[x].POSITION;
+                        } else {
+                                doc["memory20m"][String(x)]["FREQUENCY"] = memory20m[x].FREQUENCY;
+                                doc["memory20m"][String(x)]["POSITION"] = memory20m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_30M) {
                 doc["memorySize30m"] = memory30Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory30m"][String(x)]["FREQUENCY"] = memory30m[x].FREQUENCY;
-                        doc["memory30m"][String(x)]["POSITION"] = memory30m[x].POSITION;
+                        if (x==0) {
+                                doc["memory30m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_30M];
+                                doc["memory30m"][String(x)]["POSITION"] = memory30m[x].POSITION;
+                        } else {
+                                doc["memory30m"][String(x)]["FREQUENCY"] = memory30m[x].FREQUENCY;
+                                doc["memory30m"][String(x)]["POSITION"] = memory30m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_40M) {
                 doc["memorySize40m"] = memory40Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory40m"][String(x)]["FREQUENCY"] = memory40m[x].FREQUENCY;
-                        doc["memory40m"][String(x)]["POSITION"] = memory40m[x].POSITION;
+                        if (x==0) {
+                                doc["memory40m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_40M];
+                                doc["memory40m"][String(x)]["POSITION"] = memory40m[x].POSITION;
+                        } else {
+                                doc["memory40m"][String(x)]["FREQUENCY"] = memory40m[x].FREQUENCY;
+                                doc["memory40m"][String(x)]["POSITION"] = memory40m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_60M) {
                 doc["memorySize60m"] = memory60Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory60m"][String(x)]["FREQUENCY"] = memory60m[x].FREQUENCY;
-                        doc["memory60m"][String(x)]["POSITION"] = memory60m[x].POSITION;
+                        if (x==0) {
+                                doc["memory60m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_60M];
+                                doc["memory60m"][String(x)]["POSITION"] = memory60m[x].POSITION;
+                        } else {
+                                doc["memory60m"][String(x)]["FREQUENCY"] = memory60m[x].FREQUENCY;
+                                doc["memory60m"][String(x)]["POSITION"] = memory60m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_80M) {
                 doc["memorySize80m"] = memory80Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory80m"][String(x)]["FREQUENCY"] = memory80m[x].FREQUENCY;
-                        doc["memory80m"][String(x)]["POSITION"] = memory80m[x].POSITION;
+                        if (x==0) {
+                                doc["memory80m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_80M];
+                                doc["memory80m"][String(x)]["POSITION"] = memory80m[x].POSITION;
+                        } else {
+                                doc["memory80m"][String(x)]["FREQUENCY"] = memory80m[x].FREQUENCY;
+                                doc["memory80m"][String(x)]["POSITION"] = memory80m[x].POSITION;
+                        }
                 }
         } else if (CURRENT_BAND == BAND_160M) {
                 doc["memorySize160m"] = memory160Size;
                 for (int x = 0; x < MEMORY_MAX_SIZE; x++) {
-                        doc["memory160m"][String(x)]["FREQUENCY"] = memory160m[x].FREQUENCY;
-                        doc["memory160m"][String(x)]["POSITION"] = memory160m[x].POSITION;
+                        if (x==0) {
+                                doc["memory160m"][String(x)]["FREQUENCY"] = defaultMemories[BAND_160M];
+                                doc["memory160m"][String(x)]["POSITION"] = memory160m[x].POSITION;
+                        } else {
+                                doc["memory160m"][String(x)]["FREQUENCY"] = memory160m[x].FREQUENCY;
+                                doc["memory160m"][String(x)]["POSITION"] = memory160m[x].POSITION;
+                        }
                 }
         }
         // Serialize JSON to file

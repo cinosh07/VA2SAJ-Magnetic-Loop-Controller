@@ -175,6 +175,7 @@ void menuNavigationCheck() {
                         playBeepBeep();
                         resetScreenSaver();
                         returnToHomeMenu();
+                        config.ISCALIB = true;
                         startSaveConfig();
                         refreshTimer.check();
                 }

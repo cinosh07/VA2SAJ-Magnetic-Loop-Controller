@@ -99,7 +99,7 @@ void tuningProcess(uint32_t position) {
 
         //Search down counter clockwise, then return to middle and then search clockwise
         //Start search down counter clockwise
-        while ((config.CURRENT_POSITION > position - goalSearchSteps) && config.CURRENT_POSITION > 0 && wrongDirection == false)
+        while ((config.CURRENT_POSITION > position - goalSearchSteps) && config.CURRENT_POSITION > 0 && wrongDirection == false && checkLimitSwitch() == HIGH)
         {
 
                 capacitorStepper.setSpeed(ultraHighSpeed);
@@ -174,7 +174,7 @@ void tuningProcess(uint32_t position) {
                 delay(10);
                 startRadioAutotune();
         }
-        while ((config.CURRENT_POSITION < position + goalSearchSteps) && config.CURRENT_POSITION < maxSteps && wrongDirection == false && CWScanObsolete == false)
+        while ((config.CURRENT_POSITION < position + goalSearchSteps) && config.CURRENT_POSITION < maxSteps && wrongDirection == false && CWScanObsolete == false && checkLimitSwitch() == HIGH)
         {
                 capacitorStepper.setSpeed(ultraHighSpeed);
                 uint32_t goalPosition = 0;
