@@ -22,7 +22,7 @@
 -[Cloud manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/7) (Arduino Due only)<br>
 -[App manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/8) (Arduino Due only)<br>
 
-I have created issues for each of those future features. Priorities will be putted on the most wanted features. Please thumbs up or comments the features you want to be released. You can access this by clicking on the future features links above.
+I have created issues for each of those future features. Priorities will be putted on the most wanted features. Please thumbs up or comment the features you want to be released. You can access this by clicking on the future features links above.
 
 
 ![Magnetic Loop Antenna](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190805_194314.jpg)
