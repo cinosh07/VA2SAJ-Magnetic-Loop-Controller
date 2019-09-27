@@ -5,7 +5,7 @@
 
 **Features:**
 
-Auto tuning<br>
+-Auto tuning<br>
 -Auto follow radio frequency to saved memories<br>
 -25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on sd card<br>
 -Memories backed up on the cloud (Arduino Due only)<br>
