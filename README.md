@@ -6,7 +6,7 @@
 **Features:**<br>
 -Auto tuning<br>
 -Auto follow radio frequency to saved memories<br>
--25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on sd card<br>
+-25 memories (Mega 2560) 100 memories (Arduino Due) per band saved on SD card<br>
 -Screensaver<br>
 -Buzzer confirmation-alarm<br>
 -Auto Calibration<br>
