@@ -4,7 +4,7 @@
 
 ![DIY Magnetic Loop Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
 
-**Features:**<br>
+**Features**<br>
 -Input voltage 12V-36V<br>
 -Auto tuning<br>
 -Auto follow radio frequency to saved memories<br>
