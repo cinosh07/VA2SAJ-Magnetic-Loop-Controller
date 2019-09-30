@@ -155,7 +155,7 @@ SdFat SD;
 boolean sdCardPresent = false;
 //*******************************************
 //
-//  Definition de la structure des configs
+//  Defining configs structure
 //
 //*******************************************
 struct Config {
@@ -345,7 +345,7 @@ uint32_t calibrationFrequencies[10] = {28800000, 24895000, 21225000, 18118000, 1
 
 //***************************************
 //
-//   Definition des menus et Textes
+//    Menus and Texts Definition
 //
 //***************************************
 const int HOME = 0;
@@ -402,7 +402,7 @@ int TUNED_STATUS = STATUS_ERROR;
 
 //***************************************
 //
-//    Definition capacitor Step Motor
+//   Capacitor Step Motor Definition
 //
 //***************************************
 // Uncomment USE_BACKSLASH if your mecanism has backlash in the direction change.
@@ -429,7 +429,7 @@ boolean gotoPositionLock = false; //Lock the gotoposition function when in use
 Stepper capacitorStepper(stepsPerRevolution, DIR,  STEP);
 //***************************************
 //
-//       Definition Joystick
+//       Joystick Definition
 //
 //***************************************
 // During operation if you change the max speed of the step motor,
@@ -442,7 +442,7 @@ int center = range / 2;
 int lastSwitchState = HIGH;
 //******************************************************
 //
-//             Definition object Radio
+//             Radio structure Definition
 //
 //******************************************************
 struct Radio {
@@ -462,7 +462,7 @@ uint8_t PREVIOUS_TRX_MODE = 0;
 uint8_t prevTrxMode = 0;
 //********************************************
 //
-//       Definition Protocol Icom CI-V
+//       Icom CI-V Protocol Definition
 //
 //********************************************
 #ifdef ICOM
@@ -545,7 +545,7 @@ boolean screensaver = false;
 TimedAction refreshTimer = TimedAction(refreshTimeout, RefreshServices);// mS update the LCD
 //*********************************************
 //
-//      Load Configs from a SD Card file
+//      Load Configs from SD Card file
 //
 //*********************************************
 void loadConfiguration(const char *filename, Config &config) {
