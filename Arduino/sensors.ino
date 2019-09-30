@@ -126,3 +126,75 @@ boolean checkSWRLimit() {
         }
   #endif
 }
+//************************************************
+//
+//      Check if SWR limit has been reached
+//
+//************************************************
+int getRFSignal() {
+        int rfValue = 0;
+  #ifdef RF_SENSOR
+        //TODO Get RF Received Strengh via external sensor
+
+  #else
+  #ifdef ICOM
+        icom_request_signal();
+        delay(10);
+        getRadioStatus();
+        rfvalue = rfAverage(5);
+
+  #endif
+  #ifdef YEASU
+        //TODO
+  #endif
+  #ifdef KENWOOD
+        //TODO
+  #endif
+  #ifdef ELECCRAFT
+        //TODO
+  #endif
+  #ifdef OTHER
+        //TODO
+  #endif
+  #endif
+        return rfValue;
+}
+
+//***************************************************************************
+//
+//    Sampling an average swr sensor value from numSamples(int) readings
+//
+//***************************************************************************
+int rfAverage(int 5) {
+
+        //returns averaged value of numsamples swrValue samples
+        icom_request_signal();
+        delay(10);
+        getRadioStatus();
+        int rfValue = 0;
+        for (int i = 0; i < numSamples; i++)
+        {
+          #ifdef ICOM
+                rfValue += radio.trx_signal;
+                icom_request_signal();
+                delay(10);
+                getRadioStatus();
+
+          #endif
+          #ifdef YEASU
+                //TODO
+          #endif
+          #ifdef KENWOOD
+                //TODO
+          #endif
+          #ifdef ELECCRAFT
+                //TODO
+          #endif
+          #ifdef OTHER
+                //TODO
+          #endif
+
+        }
+        //average swrvalue
+        return rfValue / numSamples;
+}

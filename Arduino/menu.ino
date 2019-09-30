@@ -165,6 +165,7 @@ void menuNavigationCheck() {
                 //C Button Mode Settings ( Calibration Mode )
                 while (digitalRead(buttonCPin) == LOW && CURRENT_MODE == SETTINGS)
                 {
+                        config.ISCALIB = false;
                         playBeep();
                         CURRENT_MODE = RETURN_HOME;
                         updateDisplay(0,"");
@@ -175,7 +176,6 @@ void menuNavigationCheck() {
                         playBeepBeep();
                         resetScreenSaver();
                         returnToHomeMenu();
-                        config.ISCALIB = true;
                         startSaveConfig();
                         refreshTimer.check();
                 }

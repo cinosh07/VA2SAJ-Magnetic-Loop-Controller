@@ -28,7 +28,6 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h> //1.8 inch tft color display
 #include <ArduinoJson.h>
-#include <Ethernet.h>
 //***************************************
 //
 //       Local Variables
@@ -43,7 +42,7 @@
 // NETWORK NOT COMPATIBLE WITCH MEGA 2560 - USE ARDUINO DUE 32bit platform instead
 //#define NETWORK 1
 //#define CLOUD_SAVE 1
-//#define DEBUG 1
+//#define DEBUG 1//#define RF_SENSOR
 //*******************************
 //
 //       Radio & Antenna
@@ -128,6 +127,7 @@
 //
 //*******************************
 #ifdef NETWORK
+#include <Ethernet.h>
 EthernetServer server(80); //server port
 String readString;
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; //physical mac address
@@ -301,7 +301,7 @@ int toAutotunedTimeout = 3;
 const int swrWaitDelay = 10; //Time to wait before taking swr sensor readings in ms
 const int swrWaitDelayFine = 100; //Time to wait before taking swr sensor readings in ms
 const uint32_t searchSteps[10] = {0, 0, 0, 0, 10000, 8000,  7000, 6000, 20000, 0}; //Algorithm will search +/- searchSteps {10m,12m,15m,17m,20m,30m,40m,60m,80m,160m}
-const uint32_t searchStepsFine[10] = {0, 0, 0, 0, 2000, 1700,  1500, 1200, 10000, 0}; //Algorithm will search +/- searchSteps {10m,12m,15m,17m,20m,30m,40m,60m,80m,160m}
+const uint32_t searchStepsFine[10] = {0, 0, 0, 0, 2000, 1700,  1500, 1200, 10000, 0}; //Algorithm will search +/- searchStepsFine {10m,12m,15m,17m,20m,30m,40m,60m,80m,160m}
 const int swrAverageSample = 5; //Number of sample taken to evaluate swr sensor value
 const uint32_t SEARCH_FACTOR[10] = {0, 0, 0, 0, 175, 150, 100, 100, 100, 0};//10m,12m ,15m,17m,20m,30m,40m,60m,80m,160m
 const uint32_t SEARCH_FACTOR_FINE[10] = {0, 0, 0, 0, 25, 25, 25, 50, 50, 0};//10m,12m ,15m,17m,20m,30m,40m,60m,80m,160m
@@ -342,7 +342,7 @@ String STARTING_CALIBRATION_MESSAGE = "Calibration      ";
 //(Those frequencies correspont to the stepper position of each band saved in the config file and variable. i.e config.POS20M, config.POS12M, ... )
 // TODO Crete different values per country band plan allocation
 uint32_t calibrationFrequencies[10] = {28800000, 24895000, 21225000, 18118000, 14175000, 10125000, 7150000, 5350000, 3750000, 1900000};
-
+const int rfSearchSteps[10] = {5000, 5000, 5000, 5000, 5000, 5000,  5000, 5000, 5000, 5000}; //Algorithm will search + rfSearchSteps {10m,12m,15m,17m,20m,30m,40m,60m,80m,160m}
 //***************************************
 //
 //    Menus and Texts Definition

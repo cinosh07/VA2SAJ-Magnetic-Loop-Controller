@@ -31,35 +31,16 @@ void calibrate() {
 
         //Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
         uint32_t frequenciesArray[20] = getFrequenciesToCalibrate();
-        int frequencyToCalibrateID = 0;
         //Get the right frequency to scan from tuning frequency array. And set the radio to this frequency
-        setRadioFrequency(frequenciesArray[frequencyToCalibrateID]);
+
         PREVIOUS_TRX_MODE = radio.trx_mode;
         setRadioMode(MODE_TYPE_RTTY);
 
-        while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH)
+        while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH && config.ISCALIB == false )
         {
-
-                capacitorStepper.setSpeed(ultraHighSpeed);
-
                 calibrateCapacitor(goalPosition, TUNING, SCANNING_MESSAGE, frequenciesArray);
-
-
-                delay(swrSamplingDelay);
-                currentSWR = swrAverage(swrAverageSample);
-                if (currentSWR < currentMinSWR)
-                {
-                        currentMinSWR = currentSWR;
-                        currentMinPosition = config.CURRENT_POSITION;
-                } else {
-
-                        if (wrongDirectionCounter < 4 && currentSWR - currentMinSWR > swrSamplingTreshold) {
-                                wrongDirectionCounter = wrongDirectionCounter + 1;
-                        } else if (wrongDirectionCounter == 4 )  {
-                                wrongDirection = true;
-                        }
-                }
         }
+        setRadioMode(PREVIOUS_TRX_MODE);
 
 }
 
@@ -70,40 +51,38 @@ void calibrate() {
 //***************************************
 void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t frequenciesArray[20])
 {
-        //Move capacitor step motor quickly to the provided position
-        if (gotoPositionLock == false) {
-                gotoPositionLock = true;
-                //Definning the absolute start position from the current position
-                uint32_t startPosition = config.CURRENT_POSITION;
-
-                resetScreenSaver();
-                int tempMode = CURRENT_MODE;
-                CURRENT_MODE = mode;
-                updateDisplay(position,MESSAGE);
-                int direction;
-                if (config.CURRENT_POSITION < position)
-                {
-                        direction = cw; // Clockwise direction
-                } else {
-                        direction = ccw; // Counter Clockwise direction
+        motorStart();
+        int currentRF = 0;
+        int currentMaxRF = 0;
+        uint32_t currentMaxRFPosition = 0;
+        int decreaseCounter = 0;
+        capacitorStepper.setSpeed(ultraHighSpeed);
+        for (int x = 0; x < 20; x++) {
+                setRadioFrequency(frequenciesArray[x]);
+                currentRF = getRFSignal();
+                currentMaxRF = currentRF;
+                currentMaxRFPosition = config.CURRENT_POSITION;
+                boolean frequencyTuned = false;
+                while (frequencyTuned == false) {
+                        goToCapacitorPosition(config.CURRENT_POSITION + rfSearchSteps[CURRENT_BAND], TUNING, SCANNING_MESSAGE);
+                        currentRF = getRFSignal();
+                        if (currentRF > currentMaxRF)
+                        {
+                                currentMaxRF = currentRF;
+                                currentMaxRFPosition = config.CURRENT_POSITION;
+                        } else {
+                                if (decreaseCounter > 3) {
+                                        decreaseCounter = 0;
+                                        tuningProcess(currentMaxRFPosition);
+                                        frequencyTuned = true;
+                                } else {
+                                        decreaseCounter = decreaseCounter + 1;
+                                }
+                        }
                 }
-                //While the goal position is not reached, continue to move
-                while (config.CURRENT_POSITION != position && config.CURRENT_POSITION < maxSteps && config.CURRENT_POSITION > 0 && checkLimitSwitch() == HIGH)
-                {
-                        capacitorStepper.step(direction);
-                        resetScreenSaver();
-                        //TODO Check RF signal strengh to see if we approaching a tuned position
-                        config.CURRENT_POSITION = config.CURRENT_POSITION + direction;
-                }
-                CURRENT_MODE = tempMode;
-                if (mode != TUNING) {
-                        updateDisplay(position,"");
-                        startSaveConfig();
-                }
-
-
-                gotoPositionLock = false;
         }
+        motorStop();
+        config.ISCALIB = true;
 }
 //*************************************************************************************
 //
