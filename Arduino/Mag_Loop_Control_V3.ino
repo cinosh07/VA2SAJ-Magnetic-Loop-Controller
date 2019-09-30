@@ -530,7 +530,7 @@ const char* mode[] = {"LSB", "USB", "AM", "CW", "FSK", "FM", "WFM"};
 #endif
 //********************************************
 //
-//      Definition LCD TFT 128X160 Color
+//      LCD TFT 128X160 Color Definition
 //
 //********************************************
 Adafruit_ST7735 display = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
