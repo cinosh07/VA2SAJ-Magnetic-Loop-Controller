@@ -31,6 +31,7 @@ THIS CODE IS NOT READY YET - PLEASE DON'T USE OR YOU RISK DAMAGE TO YOUR STEP MO
 -[Memories backed up on the cloud](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/9) (Arduino Due only)<br>
 -[Cloud manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/7) (Arduino Due only)<br>
 -[App manageable](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/8) (Arduino Due only)<br>
+-[Loftur Hardware Compatible](https://github.com/cinosh07/VA2SAJ-Magnetic-Loop-Controller/issues/10) To make this firmware compatible with [Loftur mag loop controller project](https://sites.google.com/site/lofturj/to-automatically-tune-a-magnetic-loop-antenna (Teensy Compatible ) <br>
 
 I have created issues for each of those future features. Priorities will be putted on the most wanted features. Please thumbs up or comment the features you want to be released. You can access this by clicking on the future features links above.
 
