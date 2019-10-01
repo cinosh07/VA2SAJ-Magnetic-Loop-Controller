@@ -3,7 +3,7 @@
 # DIY - VA2SAJ - Build your Fully Automatic Tuner for ham radio magnetic loop antenna.
 <span style="color:#ff0000">THIS CODE IS NOT READY YET - PLEASE DON'T USE OR YOU RISK DAMAGE TO YOUR STEP MOTOR, STEP MOTOR HARDWARE, AND VARIABLE CAPACITOR.
 <br>OFFICIAL RELEASE SHOULD BE READY SOON
-</span>
+</span>`#ff0000`
 
 
 ![DIY Magnetic Loop Tuner](https://s3.amazonaws.com/files.qrz.com/j/va2saj/IMG_20190913_215805.jpg)
