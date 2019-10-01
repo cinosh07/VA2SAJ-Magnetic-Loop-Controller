@@ -30,7 +30,9 @@ void calibrate() {
         uint32_t goalPosition = maxSteps;
 
         //Aggregate calibration Frequencies and default Memories in a single array and sort by ascendding order
-        uint32_t frequenciesArray[20] = getFrequenciesToCalibrate();
+        // uint32_t *frequenciesArray[] = {1};
+
+        // frequenciesArray = getFrequenciesToCalibrate();
         //Get the right frequency to scan from tuning frequency array. And set the radio to this frequency
 
         PREVIOUS_TRX_MODE = radio.trx_mode;
@@ -38,7 +40,7 @@ void calibrate() {
 
         while ((config.CURRENT_POSITION < goalPosition) && config.CURRENT_POSITION < maxSteps && checkLimitSwitch() == HIGH && config.ISCALIB == false )
         {
-                calibrateCapacitor(goalPosition, TUNING, SCANNING_MESSAGE, frequenciesArray);
+                calibrateCapacitor(goalPosition, TUNING, SCANNING_MESSAGE, getFrequenciesToCalibrate());
         }
         setRadioMode(PREVIOUS_TRX_MODE);
 
@@ -49,7 +51,7 @@ void calibrate() {
 //        Capacitor Calibration
 //
 //***************************************
-void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t frequenciesArray[20])
+void calibrateCapacitor(uint32_t position, int mode, String MESSAGE, uint32_t *frequenciesArray)
 {
         motorStart();
         int currentRF = 0;

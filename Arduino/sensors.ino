@@ -141,7 +141,7 @@ int getRFSignal() {
         icom_request_signal();
         delay(10);
         getRadioStatus();
-        rfvalue = rfAverage(5);
+        rfValue = rfAverage(5);
 
   #endif
   #ifdef YEASU
@@ -165,7 +165,7 @@ int getRFSignal() {
 //    Sampling an average swr sensor value from numSamples(int) readings
 //
 //***************************************************************************
-int rfAverage(int 5) {
+int rfAverage(int numSamples) {
 
         //returns averaged value of numsamples swrValue samples
         icom_request_signal();

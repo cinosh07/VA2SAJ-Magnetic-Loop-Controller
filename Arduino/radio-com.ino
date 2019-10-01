@@ -210,6 +210,28 @@ void getRadioFrequency() {
 }
 //*******************************************
 //
+//     Radio - set Radio Frequency
+//
+//*******************************************
+void setRadioFrequency(uint32_t frequency) {
+#ifdef ICOM
+        icom_set_frequency(frequency);
+#endif
+#ifdef YEASU
+        //TODO
+#endif
+#ifdef KENWOOD
+        //TODO
+#endif
+#ifdef ELECCRAFT
+        //TODO
+#endif
+#ifdef OTHER
+        //TODO
+#endif
+}
+//*******************************************
+//
 //     Radio - Get Radio Band
 //
 //*******************************************
@@ -248,7 +270,7 @@ void setRadioMode(uint8_t modeid) {
                 getRadioStatus();
                 delay(10);
                 receiveRadioCom();
-                updateDisplay(position,WAITING_RADIO_MODE_MESSAGE);
+                updateDisplay(0,WAITING_RADIO_MODE_MESSAGE);
         }
 #endif
 #ifdef YEASU
